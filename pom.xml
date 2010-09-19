@@ -1,31 +1,59 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.ops4j.pax</groupId>
-    <artifactId>master</artifactId>
-    <version>3.1.3</version>
-  </parent>
+    <parent>
+        <groupId>org.ops4j.pax</groupId>
+        <artifactId>master</artifactId>
+        <version>3.1.3</version>
+    </parent>
 
-  <groupId>org.ops4j.pax.runner-repository</groupId>
-  <artifactId>runner-repository-parent</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <groupId>org.ops4j.pax.repository</groupId>
+    <artifactId>pax-repository-parent</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-  <name>OPS4J Pax Runner Repository Parent</name>
- 
-  <profiles>
-    <profile>
-      <id>default</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <modules>
-        <module>runner-repository-resolver</module>
-	    <module>runner-repository-content</module>
-        <module>runner-repository-migrator</module>
-      </modules>
-    </profile>
-  </profiles>
+    <name>OPS4J Pax Repository - Parent</name>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>pax-repository-resolver</module>
+                <module>pax-repository-content</module>
+                <module>pax-repository-migrator</module>
+            </modules>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>easymock</groupId>
+            <artifactId>easymock</artifactId>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.8.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>easymock</groupId>
+                <artifactId>easymock</artifactId>
+                <version>2.0</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
