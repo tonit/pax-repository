@@ -17,6 +17,7 @@ package org.ops4j.pax.repository.resolver;
 
 import org.ops4j.pax.repository.Artifact;
 import org.ops4j.pax.repository.ArtifactIdentifier;
+import org.ops4j.pax.repository.QueryVisitor;
 import org.ops4j.pax.repository.Repository;
 import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.RepositoryResolver;
@@ -31,13 +32,12 @@ public class DefaultResolver implements RepositoryResolver
         throws RepositoryException
     {
         // stupid search in this case. No real caching on that level.
-        for( ArtifactIdentifier id : session.index() )
+        session.index( new QueryVisitor()
         {
-            if( id.equals( identifier ) )
-            {
-                return session.retrieve( id );
-            }
+
         }
+        );
+
         // nothing found.
         return null;
     }
