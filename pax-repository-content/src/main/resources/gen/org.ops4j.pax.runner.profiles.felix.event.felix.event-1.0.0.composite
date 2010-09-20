@@ -1,0 +1,2 @@
+#Apache Felix Event Admin Service
+scan-bundle:mvn:org.apache.felix/org.apache.felix.eventadmin/1.0.0

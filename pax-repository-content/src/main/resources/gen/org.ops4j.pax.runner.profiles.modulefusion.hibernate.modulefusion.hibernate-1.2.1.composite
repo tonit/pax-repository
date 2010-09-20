@@ -1,0 +1,6 @@
+#############################################
+# Pax Runner Profile for                    #
+# ModuleFusion Hibernate Feature Pack 1.2.1 #
+#############################################
+
+scan-dir:http://modulefusion.googlecode.com/files/modulefusion-featurepack-hibernate-1.2.1.zip!/**

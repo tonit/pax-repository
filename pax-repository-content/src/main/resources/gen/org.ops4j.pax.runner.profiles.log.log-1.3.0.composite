@@ -1,0 +1,4 @@
+#Pax Logging api
+scan-bundle:mvn:org.ops4j.pax.logging/pax-logging-api/1.3.0
+#Pax Logging service
+scan-bundle:mvn:org.ops4j.pax.logging/pax-logging-service/1.3.0

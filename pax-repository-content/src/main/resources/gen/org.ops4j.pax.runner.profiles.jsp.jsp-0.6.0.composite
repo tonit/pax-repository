@@ -1,0 +1,10 @@
+###########################
+# Pax Runner Profile for  #
+# OPS4J Pax Web JSP 0.6.0 #
+###########################
+
+# Web profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/web/0.6.0/composite
+
+# Pax Web JSP support
+scan-bundle:mvn:org.ops4j.pax.web/pax-web-jsp/0.6.0

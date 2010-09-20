@@ -1,0 +1,6 @@
+#Eclipse Equinox Supplement
+scan-bundle:http://download.eclipse.org/equinox/drops/R-3.4.2-200902111700/org.eclipse.equinox.supplement_1.1.0.v20080421-2006.jar
+#Eclipse Equinox Commons
+scan-bundle:http://download.eclipse.org/equinox/drops/R-3.4.2-200902111700/org.eclipse.equinox.common_3.4.0.v20080421-2006.jar
+#Eclipse Equinox Preferences Service
+scan-bundle:http://download.eclipse.org/equinox/drops/R-3.4.2-200902111700/org.eclipse.equinox.preferences_3.2.201.R34x_v20080709.jar

@@ -1,0 +1,7 @@
+############################
+# Pax Runner Profile for   #
+# Apache Felix Shell 1.0.0 #
+############################
+
+scan-bundle:mvn:org.apache.felix/org.apache.felix.shell/1.0.0
+scan-bundle:mvn:org.apache.felix/org.apache.felix.shell.tui/1.0.0

@@ -1,0 +1,11 @@
+###################################
+# Pax Runner Profile              #
+# Knopflerfish Http Service 2.1.1 #
+###################################
+
+# Knopflerfish Servlet API
+scan-bundle:http://www.knopflerfish.org/releases/2.2.0/osgi/jars/jsdk/jsdk_api-2.5.jar
+# Knopflerfish HTTP Server (HTTP Service)
+scan-bundle:http://www.knopflerfish.org/releases/2.2.0/osgi/jars/http/http_all-2.1.1.jar
+
+-Dorg.osgi.service.http.port=8080

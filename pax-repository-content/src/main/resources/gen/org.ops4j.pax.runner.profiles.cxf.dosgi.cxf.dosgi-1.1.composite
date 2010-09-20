@@ -1,0 +1,2 @@
+# Renamed! Redirect to (new) cxf.dosgi.multibundle. Do not mantain this artifact anymore.
+scan-composite:mvn:org.ops4j.pax.runner.profiles/cxf.dosgi.multibundle/1.1/composite

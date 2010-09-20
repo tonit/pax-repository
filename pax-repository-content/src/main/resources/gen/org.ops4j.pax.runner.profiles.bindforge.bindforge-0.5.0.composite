@@ -1,0 +1,11 @@
+##########################
+# Pax Runner Profile for #
+# BindForge 0.5.0        #
+##########################
+
+# Use Scala profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/log//composite
+scan-composite:mvn:org.ops4j.pax.runner.profiles/scala.compiler/2.7.4/composite
+
+# BindForge
+scan-bundle:http://bindforge.googlecode.com/files/bindforge-0.5.0.jar

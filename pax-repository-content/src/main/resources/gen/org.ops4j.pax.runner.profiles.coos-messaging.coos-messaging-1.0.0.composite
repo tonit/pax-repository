@@ -1,0 +1,6 @@
+scan-composite:mvn:org.ops4j.pax.runner.profiles/log//composite
+scan-bundle:mvn:org.coosproject.messaging.org.apache.xmlbeans/org.apache.xmlbeans.xmlbeans/2.4.0
+scan-bundle:mvn:org.coosproject/helpers-j2se/4.6-SNAPSHOT
+scan-bundle:mvn:org.coosproject.messaging/messaging-j2se/0.3-SNAPSHOT
+scan-bundle:mvn:org.coosproject.api/coos-api/0.3-SNAPSHOT
+scan-bundle:mvn:org.coosproject.extender/coos-extender/0.3-SNAPSHOT

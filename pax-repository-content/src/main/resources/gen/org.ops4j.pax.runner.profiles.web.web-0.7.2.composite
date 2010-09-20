@@ -1,0 +1,10 @@
+##########################
+# Pax Runner Profile for #
+# OPS4J Pax Web 0.7.2    #
+##########################
+
+#Log profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/log//composite
+
+#Pax Web
+scan-bundle:mvn:org.ops4j.pax.web/pax-web-jetty-bundle/0.7.2

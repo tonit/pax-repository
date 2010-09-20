@@ -1,0 +1,6 @@
+###################################
+# Pax Runner Profile              #
+# Apache Felix File Install 0.9.2 #
+###################################
+
+scan-bundle:mvn:org.apache.felix/org.apache.felix.fileinstall/0.9.2
