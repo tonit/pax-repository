@@ -14,5 +14,11 @@
   <packaging>jar</packaging>
 
   <name>OPS4J Pax Repository - Migrator</name>
- 
+ <dependencies>
+     <dependency>
+         <groupId>org.ops4j.base</groupId>
+         <artifactId>ops4j-base-io</artifactId>
+         <version>1.2.2</version>
+     </dependency>
+ </dependencies>
 </project>
