@@ -14,7 +14,7 @@ public class MigratorException extends Throwable
 
     }
 
-    public MigratorException( String s, IOException e )
+    public MigratorException( String s, Exception e )
     {
         super( s, e );
     }
