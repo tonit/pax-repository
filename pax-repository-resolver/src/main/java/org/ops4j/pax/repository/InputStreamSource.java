@@ -15,6 +15,7 @@
  */
 package org.ops4j.pax.repository;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -24,8 +25,10 @@ public interface InputStreamSource
 {
 
     /**
-     * 
      * @return the concrete, ready to use, stream.
+     *
+     * @throws java.io.IOException in case of a problem initializing the stream.
      */
-    InputStream get();
+    InputStream get()
+        throws IOException;
 }

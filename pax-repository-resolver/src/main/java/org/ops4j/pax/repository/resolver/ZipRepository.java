@@ -29,8 +29,8 @@ import org.ops4j.pax.repository.InputStreamSource;
 import org.ops4j.pax.repository.QueryVisitor;
 import org.ops4j.pax.repository.Repository;
 import org.ops4j.pax.repository.RepositoryException;
-
-import static org.ops4j.pax.repository.resolver.RepositoryFactory.*;
+import org.ops4j.store.Store;
+import org.ops4j.store.StoreFactory;
 
 /**
  * Repository implementation that reads from zip and stores in underlying flat-file cache.
@@ -39,6 +39,7 @@ public class ZipRepository implements Repository
 {
 
     private final Map<ArtifactIdentifier, Artifact> m_map = new HashMap<ArtifactIdentifier, Artifact>();
+    private final Store<InputStream> m_store;
 
     public ZipRepository( final InputStreamSource input, ArtifactFilter filter )
         throws RepositoryException
@@ -46,6 +47,8 @@ public class ZipRepository implements Repository
         PathToIdentifierParser parser = new PathToIdentifierParser();
         try
         {
+            m_store = StoreFactory.anonymousStore();
+
             ZipInputStream inp = new ZipInputStream( input.get() );
             File dest = getCleanCache();
             ZipEntry entry;
@@ -55,19 +58,13 @@ public class ZipRepository implements Repository
                 ArtifactIdentifier id = parser.parse( entry.getName() );
                 if( filter.allow( id ) )
                 {
-                    Artifact artifact = extractAndCache( dest, inp );
-                    m_map.put( id, artifact );
+                    m_map.put( id, new CachedArtifact( m_store, inp ) );
                 }
             }
         } catch( IOException e )
         {
             throw new RepositoryException( "Problem opening Repository from Archive.", e );
         }
-    }
-
-    private Artifact extractAndCache( File dest, InputStream inp )
-    {
-        return null;
     }
 
     private File getCleanCache()

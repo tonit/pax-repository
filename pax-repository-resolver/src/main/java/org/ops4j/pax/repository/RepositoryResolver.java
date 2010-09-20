@@ -16,7 +16,7 @@
 package org.ops4j.pax.repository;
 
 /**
- * Access to a repository of type runner-repository-content
+ * Access to a repository. Gracefully handles incomplete identifiers.. like missing version for example
  */
 public interface RepositoryResolver
 {
@@ -25,12 +25,11 @@ public interface RepositoryResolver
      * Map an identifier to concrete resource.
      *
      * @param identifier what to find
-     * @param repository managing access to the content
      *
      * @return An artifact
      *
      * @throws RepositoryException in case of a problem.
      */
-    Artifact find( ArtifactIdentifier identifier, Repository repository )
+    Artifact find( ArtifactIdentifier identifier )
         throws RepositoryException;
 }

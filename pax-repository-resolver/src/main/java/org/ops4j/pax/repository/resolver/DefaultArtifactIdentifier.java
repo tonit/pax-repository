@@ -77,6 +77,11 @@ public class DefaultArtifactIdentifier implements ArtifactIdentifier
         return m_classifier;
     }
 
+    public String getName()
+    {
+        return m_name + ":" + m_classifier;
+    }
+
     @Override
     public String toString()
     {

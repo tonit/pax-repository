@@ -17,12 +17,14 @@ package org.ops4j.pax.repository.resolver;
 
 import java.io.InputStream;
 import org.junit.Test;
+import org.ops4j.pax.repository.Artifact;
 import org.ops4j.pax.repository.ArtifactIdentifier;
 import org.ops4j.pax.repository.InputStreamSource;
 import org.ops4j.pax.repository.QueryVisitor;
 import org.ops4j.pax.repository.Repository;
 import org.ops4j.pax.repository.RepositoryException;
 
+import static junit.framework.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
@@ -34,7 +36,7 @@ public class ZipRepositorySessionTest
     private static final String TEST_JAR = "/sample.jar";
 
     @Test
-    public void reUse()
+    public void indexTest()
         throws RepositoryException
     {
 
@@ -49,6 +51,28 @@ public class ZipRepositorySessionTest
 
         // all contents .composite items of file TEST_JAR from src/test/resources
         verify( visit, times( 5 ) ).touch( any( ArtifactIdentifier.class ) );
+    }
+
+    @Test
+    public void findTest()
+        throws RepositoryException
+    {
+
+        Repository repository = new ZipRepository(
+            source( getClass().getResourceAsStream( TEST_JAR ) ),
+            new ClassifierRegexFilter( "composite" )
+        );
+
+
+        IdentifierRecorder rec = new IdentifierRecorder();
+        repository.index( rec );
+
+        for( ArtifactIdentifier id : rec )
+        {
+            Artifact artifact = repository.retrieve( id );
+            assertNotNull( "Artifact from " + id.toString() + " should be available", artifact );
+        }
+
     }
 
     private InputStreamSource source( final InputStream resourceAsStream )

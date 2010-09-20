@@ -15,15 +15,18 @@
  */
 package org.ops4j.pax.repository.resolver;
 
+import java.io.InputStream;
 import org.junit.Test;
 import org.ops4j.pax.repository.Artifact;
 import org.ops4j.pax.repository.ArtifactIdentifier;
+import org.ops4j.pax.repository.InputStreamSource;
 import org.ops4j.pax.repository.Repository;
 import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.RepositoryResolver;
 
 import static junit.framework.Assert.*;
 import static org.mockito.Mockito.*;
+import static org.ops4j.pax.repository.resolver.RepositoryFactory.*;
 
 /**
  *
@@ -31,18 +34,35 @@ import static org.mockito.Mockito.*;
 public class DefaultResolverTest
 {
 
+    private static final String TEST_JAR = "/sample.jar";
+
     @Test
     public void defaultFind()
         throws RepositoryException
     {
 
-        RepositoryResolver resolver = new DefaultResolver();
-        ArtifactIdentifier identifier = mock( ArtifactIdentifier.class );
-        Repository repos = mock( Repository.class );
+        Repository repository = new ZipRepository(
+            source( getClass().getResourceAsStream( TEST_JAR ) ),
+            new ClassifierRegexFilter( "composite" )
+        );
 
-        Artifact res = resolver.find( identifier, repos );
-        
+        RepositoryResolver resolver = new DefaultResolver( repository );
+
+        Artifact res = resolver.find( identifier( "org.ops4j.pax.runner.profiles.blueprint.blueprint", "0", "composite" ) );
+
         // nothing found.
-        assertNull( res );
+        assertNotNull( res );
+    }
+
+    private InputStreamSource source( final InputStream resourceAsStream )
+    {
+        return new InputStreamSource()
+        {
+
+            public InputStream get()
+            {
+                return resourceAsStream;
+            }
+        };
     }
 }

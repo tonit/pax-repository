@@ -41,10 +41,10 @@ public class CreateAndQueryTest
 
         ArtifactIdentifier identifier = identifier( "org.ops4j.pax.profile.log", "0", "" );
 
-        RepositoryResolver resolver = new DefaultResolver();
         Repository repos = mock( Repository.class );
+        RepositoryResolver resolver = new DefaultResolver(repos);
 
-        Artifact res = resolver.find( identifier, repos );
+        Artifact res = resolver.find( identifier );
 
         // nothing found.
         assertNull( res );

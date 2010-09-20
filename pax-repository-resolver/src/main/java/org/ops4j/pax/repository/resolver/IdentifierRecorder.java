@@ -15,25 +15,27 @@
  */
 package org.ops4j.pax.repository.resolver;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import org.ops4j.pax.repository.ArtifactIdentifier;
+import org.ops4j.pax.repository.QueryVisitor;
 
 /**
- *
+ * For test purpose.
  */
-public class RepositoryFactory
+public class IdentifierRecorder implements QueryVisitor, Iterable<ArtifactIdentifier>
 {
 
-    public static ArtifactIdentifier identifier( String id, String version, String classifier )
-    {
+    private List<ArtifactIdentifier> m_recorded = new ArrayList<ArtifactIdentifier>();
 
-        ArtifactIdentifier artifact = new DefaultArtifactIdentifier( id, version, classifier );
-        return artifact;
+    public void touch( ArtifactIdentifier id )
+    {
+        m_recorded.add( id );
     }
 
-    public static ArtifactIdentifier identifier( String path )
+    public Iterator<ArtifactIdentifier> iterator()
     {
-        return new PathToIdentifierParser().parse( path );
+        return m_recorded.iterator();
     }
-
-
 }

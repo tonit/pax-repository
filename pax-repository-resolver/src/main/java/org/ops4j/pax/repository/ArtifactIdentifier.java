@@ -26,4 +26,11 @@ public interface ArtifactIdentifier
     String getVersion();
 
     String getClassifier();
+
+    /**
+     * Name combines all attributes except the version. Used for artifact ranking algorithms.
+     */
+    String getName();
+
+
 }
