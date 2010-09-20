@@ -1,8 +1,0 @@
-###########################
-# Pax Runner Profile for  #
-# Apache Felix GoGo 0.6.0 #
-###########################
-
-scan-bundle:mvn:org.apache.felix/org.apache.felix.gogo.shell/0.6.0
-scan-bundle:mvn:org.apache.felix/org.apache.felix.gogo.runtime/0.6.0
-scan-bundle:mvn:org.apache.felix/org.apache.felix.gogo.command/0.6.0

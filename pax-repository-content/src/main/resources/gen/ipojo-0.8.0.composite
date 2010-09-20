@@ -1,6 +1,0 @@
-##########################
-# Pax Runner Profile for #
-# iPojo 0.8.0            #
-##########################
-
-scan-bundle:mvn:org.apache.felix/org.apache.felix.ipojo/0.8.0

@@ -1,2 +1,0 @@
-#Redirect for Apache Felix Event Admin
-scan-composite:mvn:org.ops4j.pax.runner.profiles/felix.event//composite

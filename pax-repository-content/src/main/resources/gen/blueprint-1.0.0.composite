@@ -1,2 +1,0 @@
-#Redirect for Spring Dynamic Modules Blueprint Service
-scan-composite:mvn:org.ops4j.pax.runner.profiles/spring.dm.blueprint//composite

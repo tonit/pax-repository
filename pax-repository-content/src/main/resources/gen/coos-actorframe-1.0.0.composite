@@ -1,6 +1,0 @@
-scan-composite:mvn:org.ops4j.pax.runner.profiles/coos-messaging//composite
-
-scan-bundle:mvn:org.jdom/com.springsource.org.jdom/1.0.0
-scan-bundle:mvn:org.coosproject/helpers-j2se/4.6-SNAPSHOT
-scan-bundle:mvn:org.coosproject/actorframe-j2se/4.6-SNAPSHOT
-scan-bundle:mvn:org.coosproject.messaging/actorframe-plugin/0.3-SNAPSHOT
