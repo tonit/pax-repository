@@ -1,0 +1,39 @@
+################################
+# Pax Runner Profile for       #
+# ActiveMQ 5.2.0 #
+################################
+
+# Log profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/log//composite
+
+# Config profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/config//composite
+
+# Spring profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/spring/2.5.6.SEC01/composite
+
+# Web profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/web//composite
+
+# Transaction Bundles
+scan-bundle:mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1
+scan-bundle:mvn:org.apache.geronimo.specs/geronimo-j2ee-connector_1.5_spec/2.0.0
+scan-bundle:mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.howl/1.0.1-1_1
+scan-bundle:http://svn.apache.org/repos/asf/servicemix/m2-repo/org/apache/geronimo/components/geronimo-transaction/2.2-r634076/geronimo-transaction-2.2-r634076.jar
+scan-bundle:mvn:org.springframework/spring-tx/2.5.6.SEC01
+scan-bundle:https://repository.apache.org/content/groups/snapshots-group/org/apache/felix/org.apache.felix.transaction/0.9.0-SNAPSHOT/org.apache.felix.transaction-0.9.0-20090717.090200-1.jar
+
+# Connector Bundles
+scan-bundle:http://svn.apache.org/repos/asf/servicemix/m2-repo/org/apache/geronimo/components/geronimo-connector/2.2-r634076/geronimo-connector-2.2-r634076.jar
+scan-bundle:mvn:org.apache.geronimo.specs/geronimo-jms_1.1_spec/1.1.1
+scan-bundle:mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jencks/2.1_1
+
+# ActiveMQ bundles
+scan-bundle:mvn:org.apache.geronimo.specs/geronimo-j2ee-management_1.1_spec/1.0.1
+scan-bundle:mvn:org.apache.geronimo.specs/geronimo-jms_1.1_spec/1.1.1
+scan-bundle:mvn:commons-pool/commons-pool/1.4
+scan-bundle:mvn:org.apache.xbean/xbean-spring/3.5
+scan-bundle:mvn:org.apache.activemq/activemq-core/5.2.0
+scan-bundle:mvn:org.apache.activemq/activemq-ra/5.2.0
+scan-bundle:mvn:org.apache.activemq/activemq-console/5.2.0
+scan-bundle:mvn:org.apache.activemq/activemq-pool/5.2.0
