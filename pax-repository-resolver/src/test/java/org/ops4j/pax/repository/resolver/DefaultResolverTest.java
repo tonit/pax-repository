@@ -23,7 +23,7 @@ import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.RepositoryResolver;
 
 import static junit.framework.Assert.*;
-import static org.easymock.EasyMock.*;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -37,8 +37,8 @@ public class DefaultResolverTest
     {
 
         RepositoryResolver resolver = new DefaultResolver();
-        ArtifactIdentifier identifier = createMock( ArtifactIdentifier.class );
-        Repository repos = createMock( Repository.class );
+        ArtifactIdentifier identifier = mock( ArtifactIdentifier.class );
+        Repository repos = mock( Repository.class );
 
         Artifact res = resolver.find( identifier, repos );
         

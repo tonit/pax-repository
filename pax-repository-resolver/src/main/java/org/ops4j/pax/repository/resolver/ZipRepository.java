@@ -15,33 +15,49 @@
  */
 package org.ops4j.pax.repository.resolver;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import org.ops4j.pax.repository.Artifact;
+import org.ops4j.pax.repository.ArtifactFilter;
 import org.ops4j.pax.repository.ArtifactIdentifier;
 import org.ops4j.pax.repository.InputStreamSource;
 import org.ops4j.pax.repository.QueryVisitor;
 import org.ops4j.pax.repository.Repository;
 import org.ops4j.pax.repository.RepositoryException;
 
+import static org.ops4j.pax.repository.resolver.RepositoryFactory.*;
+
 /**
- * URL based repository session.
+ * Repository implementation that reads from zip and stores in underlying flat-file cache.
  */
 public class ZipRepository implements Repository
 {
 
-    public ZipRepository( final InputStreamSource input )
+    private final Map<ArtifactIdentifier, Artifact> m_map = new HashMap<ArtifactIdentifier, Artifact>();
+
+    public ZipRepository( final InputStreamSource input, ArtifactFilter filter )
         throws RepositoryException
     {
-        ZipInputStream inp = new ZipInputStream( input.get() );
-
+        PathToIdentifierParser parser = new PathToIdentifierParser();
         try
         {
+            ZipInputStream inp = new ZipInputStream( input.get() );
+            File dest = getCleanCache();
             ZipEntry entry;
+            long idx = 0;
             while( ( entry = inp.getNextEntry() ) != null )
             {
-
+                ArtifactIdentifier id = parser.parse( entry.getName() );
+                if( filter.allow( id ) )
+                {
+                    Artifact artifact = extractAndCache( dest, inp );
+                    m_map.put( id, artifact );
+                }
             }
         } catch( IOException e )
         {
@@ -49,17 +65,33 @@ public class ZipRepository implements Repository
         }
     }
 
+    private Artifact extractAndCache( File dest, InputStream inp )
+    {
+        return null;
+    }
+
+    private File getCleanCache()
+        throws IOException
+    {
+        File f = File.createTempFile( "tinyrepo", "" );
+        f.delete();
+        f.mkdirs();
+        return f;
+    }
+
     public void index( QueryVisitor visit )
         throws RepositoryException
     {
-
-       
+        for( ArtifactIdentifier key : m_map.keySet() )
+        {
+            visit.touch( key );
+        }
     }
 
-    public Artifact retrieve( ArtifactIdentifier id )
+    public Artifact retrieve( final ArtifactIdentifier id )
         throws RepositoryException
     {
-        return null;
+        return m_map.get( id );
     }
 
 

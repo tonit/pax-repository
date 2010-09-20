@@ -15,20 +15,24 @@
  */
 package org.ops4j.pax.repository.resolver;
 
+import org.ops4j.pax.repository.ArtifactFilter;
 import org.ops4j.pax.repository.ArtifactIdentifier;
 
 /**
- *
+ * Filter for regex on artifactId only.
  */
-public class RepositoryFactory
+public class ClassifierRegexFilter implements ArtifactFilter
 {
 
-    public static ArtifactIdentifier identifier( String id, String version, String classifier )
-    {
+    private String m_regex;
 
-        ArtifactIdentifier artifact = new DefaultArtifactIdentifier( id, version, classifier );
-        return artifact;
+    public ClassifierRegexFilter( String regex )
+    {
+        m_regex = regex;
     }
 
-
+    public boolean allow( ArtifactIdentifier identifier )
+    {
+        return identifier.getClassifier().matches( m_regex );
+    }
 }

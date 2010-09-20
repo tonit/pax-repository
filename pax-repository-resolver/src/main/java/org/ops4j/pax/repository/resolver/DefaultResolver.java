@@ -35,7 +35,11 @@ public class DefaultResolver implements RepositoryResolver
         session.index(
             new QueryVisitor()
             {
-                
+
+                public void touch( ArtifactIdentifier key )
+                {
+
+                }
             }
         );
 

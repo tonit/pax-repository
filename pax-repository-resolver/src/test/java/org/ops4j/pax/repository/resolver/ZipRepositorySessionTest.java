@@ -15,11 +15,15 @@
  */
 package org.ops4j.pax.repository.resolver;
 
+import java.io.InputStream;
 import org.junit.Test;
+import org.ops4j.pax.repository.ArtifactIdentifier;
 import org.ops4j.pax.repository.InputStreamSource;
+import org.ops4j.pax.repository.QueryVisitor;
+import org.ops4j.pax.repository.Repository;
 import org.ops4j.pax.repository.RepositoryException;
 
-import static org.easymock.EasyMock.*;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -27,13 +31,35 @@ import static org.easymock.EasyMock.*;
 public class ZipRepositorySessionTest
 {
 
+    private static final String TEST_JAR = "/sample.jar";
+
     @Test
     public void reUse()
         throws RepositoryException
     {
-        InputStreamSource sourceRepos = createMock( InputStreamSource.class );
-//        ZipRepository session = new ZipRepository( sourceRepos );
 
+        Repository repository = new ZipRepository(
+            source( getClass().getResourceAsStream( TEST_JAR ) ),
+            new ClassifierRegexFilter( "composite" )
+        );
 
+        QueryVisitor visit = mock( QueryVisitor.class );
+
+        repository.index( visit );
+
+        // all contents .composite items of file TEST_JAR from src/test/resources
+        verify( visit, times( 5 ) ).touch( any( ArtifactIdentifier.class ) );
+    }
+
+    private InputStreamSource source( final InputStream resourceAsStream )
+    {
+        return new InputStreamSource()
+        {
+
+            public InputStream get()
+            {
+                return resourceAsStream;
+            }
+        };
     }
 }

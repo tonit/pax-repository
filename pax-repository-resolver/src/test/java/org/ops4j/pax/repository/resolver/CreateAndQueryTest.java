@@ -23,10 +23,10 @@ import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.RepositoryResolver;
 import org.ops4j.pax.repository.RepositoryWriter;
 
+import static org.mockito.Mockito.*;
 import static org.ops4j.pax.repository.resolver.RepositoryFactory.*;
 
 import static junit.framework.Assert.*;
-import static org.easymock.EasyMock.*;
 
 /**
  *
@@ -39,11 +39,10 @@ public class CreateAndQueryTest
         throws RepositoryException
     {
 
-        ArtifactIdentifier identifier = identifier( "org.ops4j.pax.profile.log" );
-
+        ArtifactIdentifier identifier = identifier( "org.ops4j.pax.profile.log", "0", "" );
 
         RepositoryResolver resolver = new DefaultResolver();
-        Repository repos = createMock( Repository.class );
+        Repository repos = mock( Repository.class );
 
         Artifact res = resolver.find( identifier, repos );
 
