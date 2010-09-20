@@ -1,0 +1,7 @@
+#######################################
+# Pax Runner Profile                  #
+# OPS4J Pax ConfMan PropsLoader 0.2.2 #
+#######################################
+
+scan-bundle:mvn:org.apache.felix/org.apache.felix.configadmin/1.2.4
+scan-bundle:mvn:org.ops4j.pax.confman/pax-confman-propsloader/0.2.2

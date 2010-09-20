@@ -1,0 +1,5 @@
+#http profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/web//composite
+
+#Apache Felix WebConsole
+scan-bundle:mvn:org.apache.felix/org.apache.felix.webconsole/1.2.2

@@ -1,0 +1,31 @@
+##############################
+# Pax Runner Profile for     #
+# ModuleFusion Runtime 1.2.1 #
+##############################
+
+# Config profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/config//composite
+
+# Log profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/log//composite
+
+# URL profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/url//composite
+
+# OBR profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/obr//composite
+
+# WAR profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/war//composite
+
+# ModuleFusion Runtime
+scan-bundle:jar:http://modulefusion.googlecode.com/files/modulefusion-runtime-1.2.1.zip!/modulefusion/lib/org.modulefusion.dirinstaller-1.1.0.jar
+scan-dir:http://modulefusion.googlecode.com/files/modulefusion-runtime-1.2.1.zip!/modulefusion/load/**.jar
+
+######################
+# Profile properties #
+######################
+
+# Directory watched by ModuleFusion DirInstaller to bundles to be automatically provisioned
+-Ddirinstaller.dir=../load
+

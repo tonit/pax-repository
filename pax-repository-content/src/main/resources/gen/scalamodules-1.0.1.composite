@@ -1,0 +1,12 @@
+##########################
+# Pax Runner Profile for #
+# Scala Modules 1.0.1    #
+##########################
+
+# Use Scala profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/scala/2.7.4/composite
+
+# Scala Modules
+scan-bundle:mvn:http://scala-tools.org/repo-releases!org.scalamodules/scalamodules.core/1.0.1
+scan-bundle:mvn:http://scala-tools.org/repo-releases!org.scalamodules/scalamodules.services/1.0.1
+scan-bundle:mvn:http://scala-tools.org/repo-releases!org.scalamodules/scalamodules.util/1.0.1

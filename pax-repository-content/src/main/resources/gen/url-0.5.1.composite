@@ -1,0 +1,13 @@
+##########################
+# Pax Runner Profile for #
+# OPS4J Pax URL 0.5.1    #
+##########################
+
+#Pax URL classpath: handler
+scan-bundle:mvn:org.ops4j.pax.url/pax-url-classpath/0.5.1
+#Pax URL mvn: handler
+scan-bundle:mvn:org.ops4j.pax.url/pax-url-mvn/0.5.1
+#Pax URL war: handler
+scan-bundle:mvn:org.ops4j.pax.url/pax-url-war/0.5.1
+#Pax URL wrap: handler
+scan-bundle:mvn:org.ops4j.pax.url/pax-url-wrap/0.5.1

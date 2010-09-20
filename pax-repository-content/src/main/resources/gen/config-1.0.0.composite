@@ -1,0 +1,2 @@
+#Redirect for Apache Felix Configuration Admin
+scan-composite:mvn:org.ops4j.pax.runner.profiles/felix.config//composite

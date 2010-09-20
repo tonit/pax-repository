@@ -1,0 +1,18 @@
+##########################################
+# Pax Runner Profile for                 #
+# SpringFramework 3.0.4.RELEASE          #
+##########################################
+#Log profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/log/1.5.1/composite
+scan-composite:mvn:org.ops4j.pax.runner.profiles/compendium/4.2.0/composite
+
+#Spring framework bundles
+scan-bundle:mvn:http://repository.springsource.com/maven/bundles/external!org.aopalliance/com.springsource.org.aopalliance/1.0.0
+
+scan-bundle:mvn:org.springframework/spring-aop/3.0.4.RELEASE
+scan-bundle:mvn:org.springframework/spring-asm/3.0.4.RELEASE
+scan-bundle:mvn:org.springframework/spring-beans/3.0.4.RELEASE
+scan-bundle:mvn:org.springframework/spring-context/3.0.4.RELEASE
+scan-bundle:mvn:org.springframework/spring-context-support/3.0.4.RELEASE
+scan-bundle:mvn:org.springframework/spring-core/3.0.4.RELEASE
+scan-bundle:mvn:org.springframework/spring-expression/3.0.4.RELEASE

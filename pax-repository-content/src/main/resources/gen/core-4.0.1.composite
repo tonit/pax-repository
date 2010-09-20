@@ -1,0 +1,6 @@
+###################################
+# Pax Runner Profile for          #
+# OSGi Alliance Core Bundle 4.0.1 #
+###################################
+
+scan-bundle:mvn:org.osgi/org.osgi.core/4.0.1

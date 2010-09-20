@@ -1,0 +1,12 @@
+##################################
+# Pax Runner Profile for         #
+# Apache Felix Web Console 2.0.6 #
+##################################
+
+#http profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/web//composite
+
+#Apache Felix WebConsole
+scan-bundle:mvn:org.apache.felix/org.apache.felix.webconsole/3.0.0
+scan-bundle:mvn:org.apache.felix/org.apache.felix.webconsole.plugins.event/1.0.2
+scan-bundle:mvn:org.apache.felix/org.apache.felix.webconsole.plugins.memoryusage/1.0.0

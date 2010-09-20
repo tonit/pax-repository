@@ -1,0 +1,8 @@
+##########################
+# Pax Runner Profile for #
+# Guice Peaberry 1.1.1   #
+##########################
+
+scan-bundle:mvn:http://repository.ops4j.org/mvn-snapshots!org.ops4j.peaberry.dependencies/aopalliance/1.0-SNAPSHOT
+scan-bundle:mvn:http://repository.ops4j.org/mvn-snapshots!org.ops4j.peaberry.dependencies/guice/2.0-SNAPSHOT
+scan-bundle:mvn:org.ops4j/peaberry/1.1.1

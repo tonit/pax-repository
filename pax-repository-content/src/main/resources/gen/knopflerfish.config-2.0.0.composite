@@ -1,0 +1,10 @@
+##########################################
+# Pax Runner Profile for                 #
+# Knopflerfish Configuration Admin 2.0.0 #
+##########################################
+
+# Knopflerfish Log profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/knopflerfish.log//composite
+
+# Knopflerfish Configuration Admin
+scan-bundle:http://www.knopflerfish.org/releases/2.0.0/jars/cm/cm_all-2.0.0.jar

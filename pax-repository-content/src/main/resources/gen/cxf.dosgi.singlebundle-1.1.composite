@@ -1,0 +1,1 @@
+scan-bundle:mvn:org.apache.cxf.dosgi/cxf-dosgi-ri-singlebundle-distribution/1.1@1

@@ -1,0 +1,8 @@
+##########################
+# Pax Runner Profile for #
+# Guice Peaberry 1.0 RC2 #
+##########################
+
+scan-bundle:mvn:org.aopalliance/com.springsource.org.aopalliance/1.0.0
+scan-bundle:jar:http://peaberry.googlecode.com/files/peaberry-1.1-rc2.zip!/guice-customloader-20090323.jar
+scan-bundle:jar:http://peaberry.googlecode.com/files/peaberry-1.1-rc2.zip!/peaberry-1.1-rc2.jar

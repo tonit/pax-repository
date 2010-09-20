@@ -1,0 +1,6 @@
+##################################
+# Pax Runner Profile             #
+# Knopflerfish Log Service 2.0.0 #
+##################################
+
+scan-bundle:http://www.knopflerfish.org/releases/2.0.0/jars/log/log_all-2.0.0.jar

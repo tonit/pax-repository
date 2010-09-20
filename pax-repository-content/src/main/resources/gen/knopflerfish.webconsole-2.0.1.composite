@@ -1,0 +1,10 @@
+##################################
+# Pax Runner Profile for         #
+# Knopflerfish Web Console 2.0.1 #
+##################################
+
+#Web profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/web/0.6.0/composite
+
+# Knopflerfish HTTP Console
+scan-bundle:http://www.knopflerfish.org/releases/2.3.2/osgi/jars/httpconsole/httpconsole-2.0.1.jar

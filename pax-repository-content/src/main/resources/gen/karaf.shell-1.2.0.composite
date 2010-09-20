@@ -1,0 +1,16 @@
+############################################
+# Pax Runner Profile for                   #
+# Apache Felix Karaf Shell (Console) 1.2.0 #
+############################################
+
+# Required profiles
+scan-composite:mvn:org.ops4j.pax.runner.profiles/karaf.shell.lite/1.2.0/composite
+scan-composite:mvn:org.ops4j.pax.runner.profiles/felix.obr//composite
+scan-bundle:mvn:org.apache.mina/mina-core/2.0.0-RC1
+scan-bundle:mvn:org.apache.sshd/sshd-core/0.3.0
+
+# Karaf Shell Additional
+scan-bundle:mvn:org.apache.felix.karaf.shell/org.apache.felix.karaf.shell.obr/1.2.0
+scan-bundle:mvn:org.apache.felix.karaf.shell/org.apache.felix.karaf.shell.ssh/1.2.0
+
+-Dkaraf.startRemoteShell=true

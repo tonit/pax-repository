@@ -1,0 +1,29 @@
+##########################################
+# Pax Runner Profile for                 #
+# Spring MVC 3.0.0.RELEASE               #
+##########################################
+
+#Log profile
+scan-composite:mvn:org.ops4j.pax.runner.profiles/log/1.4/composite
+scan-composite:mvn:org.ops4j.pax.runner.profiles/compendium/4.2.0/composite
+
+#SpringSource Framework
+scan-composite:mvn:org.ops4j.pax.runner.profiles/spring/3.0.0.RELEASE/composite
+scan-composite:mvn:org.ops4j.pax.runner.profiles/spring.dm/2.0.0.M1/composite
+
+#Spring MVC framework bundles
+scan-bundle:mvn:org.springframework/spring-web/3.0.0.RELEASE
+scan-bundle:mvn:org.springframework/spring-webmvc/3.0.0.RELEASE
+
+#Spring DM web support
+scan-bundle:mvn:http://maven.springframework.org/milestone!org.springframework.osgi/spring-osgi-web/2.0.0.M1
+scan-bundle:mvn:http://maven.springframework.org/milestone!org.springframework.osgi/spring-osgi-web-extender/2.0.0.M1
+
+#Servlet API and JSTL
+scan-bundle:mvn:http://repository.springsource.com/maven/bundles/external!javax.servlet/com.springsource.javax.servlet/2.5.0
+scan-bundle:mvn:http://repository.springsource.com/maven/bundles/external!javax.el/com.springsource.javax.el/1.0.0
+
+#Pax Web
+scan-bundle:mvn:org.ops4j.pax.web/pax-web-jetty-bundle/0.7.2
+scan-bundle:mvn:org.ops4j.pax.web/pax-web-jsp/0.7.2
+scan-bundle:mvn:org.ops4j.pax.web/pax-web-extender-war/0.7.2

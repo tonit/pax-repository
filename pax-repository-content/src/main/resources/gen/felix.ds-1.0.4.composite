@@ -1,0 +1,2 @@
+#Felix Service Component Runtime (Declarative Services)
+scan-bundle:mvn:org.apache.felix/org.apache.felix.scr/1.0.4
