@@ -32,7 +32,7 @@ public class ZipRepositorySessionTest
         throws RepositoryException
     {
         InputStreamSource sourceRepos = createMock( InputStreamSource.class );
-        ZipRepository session = new ZipRepository( sourceRepos );
+//        ZipRepository session = new ZipRepository( sourceRepos );
 
 
     }
