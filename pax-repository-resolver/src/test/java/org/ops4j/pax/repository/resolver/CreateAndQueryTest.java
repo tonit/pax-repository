@@ -40,8 +40,7 @@ public class CreateAndQueryTest
     {
 
         ArtifactIdentifier identifier = identifier( "org.ops4j.pax.profile.log" );
-        RepositoryWriter writer = new DefaultRepositoryWriter(  );
-        
+
 
         RepositoryResolver resolver = new DefaultResolver();
         Repository repos = createMock( Repository.class );

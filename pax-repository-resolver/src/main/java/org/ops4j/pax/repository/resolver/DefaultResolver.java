@@ -32,10 +32,11 @@ public class DefaultResolver implements RepositoryResolver
         throws RepositoryException
     {
         // stupid search in this case. No real caching on that level.
-        session.index( new QueryVisitor()
-        {
-
-        }
+        session.index(
+            new QueryVisitor()
+            {
+                
+            }
         );
 
         // nothing found.
