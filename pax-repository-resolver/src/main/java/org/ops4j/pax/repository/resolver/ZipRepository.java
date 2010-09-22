@@ -50,7 +50,6 @@ public class ZipRepository implements Repository
             m_store = StoreFactory.anonymousStore();
 
             ZipInputStream inp = new ZipInputStream( input.get() );
-            File dest = getCleanCache();
             ZipEntry entry;
             long idx = 0;
             while( ( entry = inp.getNextEntry() ) != null )
@@ -65,15 +64,6 @@ public class ZipRepository implements Repository
         {
             throw new RepositoryException( "Problem opening Repository from Archive.", e );
         }
-    }
-
-    private File getCleanCache()
-        throws IOException
-    {
-        File f = File.createTempFile( "tinyrepo", "" );
-        f.delete();
-        f.mkdirs();
-        return f;
     }
 
     public void index( QueryVisitor visit )
