@@ -39,25 +39,21 @@ public class ZipRepository implements Repository
 {
 
     private final Map<ArtifactIdentifier, Artifact> m_map = new HashMap<ArtifactIdentifier, Artifact>();
-    private final Store<InputStream> m_store;
 
-    public ZipRepository( final InputStreamSource input, ArtifactFilter filter )
+    public ZipRepository( final InputStreamSource input, ArtifactFilter filter, Store<InputStream> store )
         throws RepositoryException
     {
-        PathToIdentifierParser parser = new PathToIdentifierParser();
         try
         {
-            m_store = StoreFactory.anonymousStore();
-
             ZipInputStream inp = new ZipInputStream( input.get() );
             ZipEntry entry;
-            long idx = 0;
+            PathToIdentifierParser parser = new PathToIdentifierParser();
             while( ( entry = inp.getNextEntry() ) != null )
             {
                 ArtifactIdentifier id = parser.parse( entry.getName() );
                 if( filter.allow( id ) )
                 {
-                    m_map.put( id, new CachedArtifact( m_store, inp ) );
+                    m_map.put( id, new CachedArtifact( store, inp ) );
                 }
             }
         } catch( IOException e )

@@ -15,6 +15,7 @@
  */
 package org.ops4j.pax.repository.resolver;
 
+import java.io.IOException;
 import java.io.InputStream;
 import org.junit.Test;
 import org.ops4j.pax.repository.Artifact;
@@ -23,6 +24,7 @@ import org.ops4j.pax.repository.InputStreamSource;
 import org.ops4j.pax.repository.Repository;
 import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.RepositoryResolver;
+import org.ops4j.store.StoreFactory;
 
 import static junit.framework.Assert.*;
 import static org.mockito.Mockito.*;
@@ -38,12 +40,13 @@ public class DefaultResolverTest
 
     @Test
     public void defaultFind()
-        throws RepositoryException
+        throws RepositoryException, IOException
     {
 
         Repository repository = new ZipRepository(
             source( getClass().getResourceAsStream( TEST_JAR ) ),
-            new ClassifierRegexFilter( "composite" )
+            new ClassifierRegexFilter( "composite" ),
+            StoreFactory.anonymousStore()
         );
 
         RepositoryResolver resolver = new DefaultResolver( repository );

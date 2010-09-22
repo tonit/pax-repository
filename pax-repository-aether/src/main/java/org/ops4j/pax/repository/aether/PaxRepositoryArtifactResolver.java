@@ -42,6 +42,7 @@ import org.ops4j.pax.repository.RepositoryResolver;
 import org.ops4j.pax.repository.resolver.ClassifierRegexFilter;
 import org.ops4j.pax.repository.resolver.DefaultResolver;
 import org.ops4j.pax.repository.resolver.ZipRepository;
+import org.ops4j.store.StoreFactory;
 
 import static org.ops4j.pax.repository.resolver.RepositoryFactory.*;
 
@@ -84,7 +85,7 @@ public class PaxRepositoryArtifactResolver implements ArtifactResolver
         String version = artifactRequest.getArtifact().getVersion();
         String classifier = artifactRequest.getArtifact().getClassifier();
 
-        ArtifactResult result =  new ArtifactResult(artifactRequest);
+        ArtifactResult result = new ArtifactResult( artifactRequest );
         // try to resolve from local store:
 
         // no ?
@@ -101,14 +102,16 @@ public class PaxRepositoryArtifactResolver implements ArtifactResolver
                         {
                             return new URL( repos.getUrl() ).openStream();
                         }
-                    }, new ClassifierRegexFilter( "composite" )
+                    }, new ClassifierRegexFilter( "composite" ),
+                                       StoreFactory.anonymousStore()
                     )
                 );
                 Artifact paxrepoArtifact = resolver.find( identifier( artifact, version, classifier ) );
                 // map to ArtifactResult
-               if (paxrepoArtifact != null) {
-                   // result.setArtifact( artifactRequest.getArtifact().setFile( paxrepoArtifact.getFile() ));
-               }
+                if( paxrepoArtifact != null )
+                {
+                    // result.setArtifact( artifactRequest.getArtifact().setFile( paxrepoArtifact.getFile() ));
+                }
             }
 
         } catch( Exception e )
