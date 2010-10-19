@@ -43,7 +43,7 @@ public class AetherResolver implements RepositoryResolver
 {
 
     private static final Log LOG = LogFactory.getLog( AetherResolver.class );
-  
+
     final private String m_localRepo;
     final private String[] m_repositories;
     final private RepositorySystem m_repoSystem;
@@ -54,11 +54,23 @@ public class AetherResolver implements RepositoryResolver
         return new LocalArtifact( identifier, resolve( identifier ) );
     }
 
-    public AetherResolver( String local, String[] repos )
+    public AetherResolver( String local, String... repos )
     {
-        m_localRepo = local;
+        if( local == null )
+        {
+            m_localRepo = System.getProperty( "user.home" ) + "/.m2/repository";
+        }
+        else
+        {
+            m_localRepo = local;
+        }
         m_repositories = repos;
         m_repoSystem = newRepositorySystem();
+    }
+
+    public AetherResolver()
+    {
+        this( null );
     }
 
     private File resolve( ArtifactIdentifier identifier )
