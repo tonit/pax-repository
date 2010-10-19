@@ -21,16 +21,38 @@ package org.ops4j.pax.repository;
 public interface ArtifactIdentifier
 {
 
+    /**
+     * May be null.
+     *
+     * @return groupId or null
+     */
     String getGroupId();
 
+    /**
+     * May be null.
+     *
+     * @return artifactId or null
+     */
     String getArtifactId();
 
+    /**
+     * May be null.
+     *
+     * @return version or null
+     */
     String getVersion();
 
+    /**
+     * May be null.
+     *
+     * @return classifier or null
+     */
     String getClassifier();
 
     /**
      * Name combines all attributes except the version. Used for artifact ranking algorithms.
+     *
+     * @return an identification that is unique. Never null.
      */
     String getName();
 

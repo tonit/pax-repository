@@ -23,6 +23,13 @@ import org.ops4j.pax.repository.ArtifactIdentifier;
 public class RepositoryFactory
 {
 
+    public static ArtifactIdentifier parseFromURL( String fullQualifier )
+    {
+
+        return new StringToIdentifierParser().parse( fullQualifier );
+
+    }
+
     public static ArtifactIdentifier identifier( String id, String version, String classifier )
     {
 
@@ -30,7 +37,14 @@ public class RepositoryFactory
         return artifact;
     }
 
-    public static ArtifactIdentifier identifier( String path )
+    public static ArtifactIdentifier identifier( String groupId, String artifactId, String version, String classifier )
+    {
+
+        ArtifactIdentifier artifact = new DefaultArtifactIdentifier( groupId, artifactId, version, classifier );
+        return artifact;
+    }
+
+    public static ArtifactIdentifier parseFromPath( String path )
     {
         return new PathToIdentifierParser().parse( path );
     }

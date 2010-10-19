@@ -38,6 +38,13 @@ public class DefaultResolverTest
 
     private static final String TEST_JAR = "/sample.jar";
 
+    @Test( expected = AssertionError.class )
+    public void noRepo()
+        throws RepositoryException, IOException
+    {
+        new DefaultResolver( null );
+    }
+
     @Test
     public void defaultFind()
         throws RepositoryException, IOException

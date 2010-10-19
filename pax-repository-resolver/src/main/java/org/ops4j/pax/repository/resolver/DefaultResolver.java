@@ -38,6 +38,7 @@ public class DefaultResolver implements RepositoryResolver
     public DefaultResolver( Repository repos )
         throws RepositoryException
     {
+        assert repos != null : "Repository may never be null.";
         m_repository = repos;
         repos.index( new QueryVisitor()
         {
