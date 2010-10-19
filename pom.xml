@@ -25,6 +25,7 @@
                 <module>pax-repository-content</module>
                 <module>pax-repository-api</module>
                 <module>pax-repository-resolver</module>
+                <module>pax-repository-aether</module>
                 <module>pax-repository-migrator</module>
             </modules>
         </profile>

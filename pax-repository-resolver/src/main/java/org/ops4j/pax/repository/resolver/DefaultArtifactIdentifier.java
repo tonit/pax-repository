@@ -37,7 +37,16 @@ public class DefaultArtifactIdentifier implements ArtifactIdentifier
         m_artifact = artifact;
         m_group = group;
         m_version = version;
-        m_classifier = classifier;
+
+        if( classifier == null )
+        {
+            m_classifier = "jar";
+        }
+        else
+        {
+            m_classifier = classifier;
+
+        }
     }
 
     public DefaultArtifactIdentifier( String name, String version, String classifier )

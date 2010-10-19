@@ -15,33 +15,29 @@
  */
 package org.ops4j.pax.repository.resolver;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.zip.ZipInputStream;
 import org.ops4j.pax.repository.Artifact;
 import org.ops4j.pax.repository.ArtifactIdentifier;
 import org.ops4j.pax.repository.InputStreamSource;
-import org.ops4j.store.Handle;
-import org.ops4j.store.Store;
 
 /**
- * Convinience, OPS4J-Base-Store based Artifact implementation.
+ * Local Artifact.
  */
-public class CachedArtifact implements Artifact
+public class LocalArtifact implements Artifact
 {
 
-    private final Store<InputStream> m_store;
-    private final Handle m_handle;
     private final ArtifactIdentifier m_ident;
+    private final File m_file;
 
-    public CachedArtifact( ArtifactIdentifier ident, Store<InputStream> store, InputStream inp )
-        throws IOException
+    public LocalArtifact( ArtifactIdentifier ident, File file )
     {
-        m_store = store;
-        m_handle = store.store( inp );
+        m_file = file;
         m_ident = ident;
     }
-    
+
     public InputStreamSource getContent()
     {
         return new InputStreamSource()
@@ -50,7 +46,7 @@ public class CachedArtifact implements Artifact
             public InputStream get()
                 throws IOException
             {
-                return m_store.load( m_handle );
+                return new FileInputStream( m_file );
             }
         };
     }
