@@ -21,6 +21,8 @@ package org.ops4j.pax.repository;
 public interface ArtifactIdentifier
 {
 
+    String getGroupId();
+
     String getArtifactId();
 
     String getVersion();

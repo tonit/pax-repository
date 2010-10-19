@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipInputStream;
 import org.ops4j.pax.repository.Artifact;
+import org.ops4j.pax.repository.ArtifactIdentifier;
 import org.ops4j.pax.repository.InputStreamSource;
 import org.ops4j.store.Handle;
 import org.ops4j.store.Store;
@@ -29,15 +30,16 @@ import org.ops4j.store.Store;
 public class CachedArtifact implements Artifact
 {
 
-    private Store<InputStream> m_store;
-    private Handle m_handle;
+    private final Store<InputStream> m_store;
+    private final Handle m_handle;
+    private final ArtifactIdentifier m_ident;
 
-    public CachedArtifact( Store<InputStream> store, InputStream inp )
+    public CachedArtifact( ArtifactIdentifier ident, Store<InputStream> store, InputStream inp )
         throws IOException
     {
         m_store = store;
         m_handle = store.store( inp );
-
+        m_ident = ident;
     }
 
     public InputStreamSource getContent()
@@ -51,5 +53,30 @@ public class CachedArtifact implements Artifact
                 return m_store.load( m_handle );
             }
         };
+    }
+
+    public String getGroupId()
+    {
+        return m_ident.getGroupId();
+    }
+
+    public String getArtifactId()
+    {
+        return m_ident.getArtifactId();
+    }
+
+    public String getVersion()
+    {
+        return m_ident.getVersion();
+    }
+
+    public String getClassifier()
+    {
+        return m_ident.getClassifier();
+    }
+
+    public String getName()
+    {
+        return m_ident.getName();
     }
 }

@@ -3,7 +3,7 @@ package org.ops4j.pax.repository;
 /**
  *
  */
-public interface Artifact
+public interface Artifact extends ArtifactIdentifier
 {
 
     /**

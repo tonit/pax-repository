@@ -23,18 +23,26 @@ import org.ops4j.pax.repository.ArtifactIdentifier;
 public class DefaultArtifactIdentifier implements ArtifactIdentifier
 {
 
-    final private String m_name;
+    final private String m_artifact;
+    final private String m_group;
+
     final private String m_version;
     final private String m_classifier;
 
     private static final String DEFAULT_VERSION = "0";
     private static final String DEFAULT_CLASSIFIER = "";
 
-    public DefaultArtifactIdentifier( String name, String version, String classifier )
+    public DefaultArtifactIdentifier( String group, String artifact, String version, String classifier )
     {
-        m_name = name;
+        m_artifact = artifact;
+        m_group = group;
         m_version = version;
         m_classifier = classifier;
+    }
+
+    public DefaultArtifactIdentifier( String name, String version, String classifier )
+    {
+        this( "", name, version, classifier );
     }
 
     public DefaultArtifactIdentifier( String id )
@@ -42,15 +50,20 @@ public class DefaultArtifactIdentifier implements ArtifactIdentifier
         this( id, DEFAULT_VERSION, DEFAULT_CLASSIFIER );
     }
 
+    public String getGroupId()
+    {
+        return m_group;
+    }
+
     public String getArtifactId()
     {
-        return m_name;
+        return m_artifact;
     }
 
     @Override
     public int hashCode()
     {
-        return ( m_name + m_version + m_classifier ).hashCode();
+        return ( m_artifact + m_version + m_classifier ).hashCode();
     }
 
     @Override
@@ -59,7 +72,7 @@ public class DefaultArtifactIdentifier implements ArtifactIdentifier
         if( obj instanceof ArtifactIdentifier )
         {
             ArtifactIdentifier comp = (ArtifactIdentifier) obj;
-            return ( m_name + m_version + m_classifier ).equals( ( comp.getArtifactId() + comp.getVersion() + comp.getClassifier() ) );
+            return ( getName() ).equals( ( comp.getName() ) );
         }
         else
         {
@@ -79,12 +92,12 @@ public class DefaultArtifactIdentifier implements ArtifactIdentifier
 
     public String getName()
     {
-        return m_name + ":" + m_classifier;
+        return m_group + ":" + m_artifact + ":" + m_classifier;
     }
 
     @Override
     public String toString()
     {
-        return "[ ArtifactIdentifier id=" + m_name + " version=" + m_version + " classifier=" + m_classifier + " ]";
+        return "[ ArtifactIdentifier group=" + m_group + " artifact=" + m_artifact + " version=" + m_version + " classifier=" + m_classifier + " ]";
     }
 }

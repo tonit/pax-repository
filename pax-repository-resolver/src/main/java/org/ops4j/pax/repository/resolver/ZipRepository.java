@@ -53,7 +53,7 @@ public class ZipRepository implements Repository
                 ArtifactIdentifier id = parser.parse( entry.getName() );
                 if( filter.allow( id ) )
                 {
-                    m_map.put( id, new CachedArtifact( store, inp ) );
+                    m_map.put( id, new CachedArtifact( id, store, inp ) );
                 }
             }
         } catch( IOException e )

@@ -17,6 +17,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>pax-repository-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.ops4j.base</groupId>
             <artifactId>ops4j-base-io</artifactId>
             <version>1.2.2</version>
