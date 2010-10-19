@@ -27,7 +27,8 @@ import org.ops4j.pax.repository.RepositoryResolver;
 import static org.ops4j.pax.repository.resolver.RepositoryFactory.*;
 
 /**
- *
+ * This resolver requires a repository underneath that provides a full index that can be visited.
+ * Should not be used for adhoc queries against foreign repositories.
  */
 public class DefaultResolver implements RepositoryResolver
 {
@@ -65,6 +66,9 @@ public class DefaultResolver implements RepositoryResolver
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Artifact find( ArtifactIdentifier ident )
         throws RepositoryException
     {
