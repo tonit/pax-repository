@@ -15,7 +15,12 @@
  */
 package org.ops4j.pax.repository.resolver;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.ops4j.pax.repository.Artifact;
 import org.ops4j.pax.repository.ArtifactIdentifier;
+import org.ops4j.pax.repository.RepositoryException;
+import org.ops4j.pax.repository.RepositoryResolver;
 
 /**
  *
@@ -47,6 +52,46 @@ public class RepositoryFactory
     public static ArtifactIdentifier parseFromPath( String path )
     {
         return new PathToIdentifierParser().parse( path );
+    }
+
+    /**
+     * Helper to transform a list of identifiers (in string form) directly into a list of (resolved) artifacts.
+     * This one produces readily resolved artifacts (hence: eager)
+     *
+     * @param repositoryResolver to use for resolving process.
+     * @param fullQualifier      qualifier to be resolved.
+     *
+     * @return This one produces readily resolved artifacts (hence: eager)
+     *
+     * @throws org.ops4j.pax.repository.RepositoryException
+     *          in case of a resolver error (e.g.)
+     */
+    public static Artifact[] resolveEager( RepositoryResolver repositoryResolver, String... fullQualifier )
+        throws RepositoryException
+    {
+        List<Artifact> list = new ArrayList<Artifact>();
+        for( String artifact : fullQualifier )
+        {
+            list.add( repositoryResolver.find( parseFromURL( artifact ) ) );
+
+        }
+        return list.toArray( new Artifact[ list.size() ] );
+    }
+
+    /**
+     * @param repositoryResolver to use for resolving process.
+     * @param fullQualifier      qualifier to be resolved.
+     */
+    public static Artifact[] resolveLazy( RepositoryResolver repositoryResolver, String... fullQualifier )
+        throws RepositoryException
+    {
+        List<Artifact> list = new ArrayList<Artifact>();
+        for( String artifact : fullQualifier )
+        {
+            list.add( new LazyResolvingArtifact( repositoryResolver, parseFromURL( artifact ) ) );
+
+        }
+        return list.toArray( new Artifact[ list.size() ] );
     }
 
 

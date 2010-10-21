@@ -22,28 +22,55 @@ import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.RepositoryResolver;
 
 /**
- * Handy Artifact implementation (api helper)
+ *
  */
-public class ResolvingArtifact implements Artifact
+public class LazyResolvingArtifact implements Artifact
 {
 
-    private Artifact m_artifact;
+    final private ArtifactIdentifier m_artifactIdentifier;
+    final private RepositoryResolver m_resolver;
 
-    public ResolvingArtifact( RepositoryResolver resolver, ArtifactIdentifier identifier )
+    private Artifact m_artifact;
+    private boolean m_failedBefore = false;
+
+    public LazyResolvingArtifact( RepositoryResolver resolver, ArtifactIdentifier identifier )
         throws RepositoryException
     {
-        m_artifact = resolver.find( identifier );
+        m_artifactIdentifier = identifier;
+        m_resolver = resolver;
     }
 
-    public InputStreamSource getContent()
+    private void lazyResolve()
         throws RepositoryException
     {
+        if( m_failedBefore )
+        {
+            throw new RepositoryException( "Artifact resolve has been failed before. Thus this artifact will not go any better." );
+        }
+
+        if( m_artifact == null )
+        {
+            try
+            {
+                m_artifact = m_resolver.find( m_artifactIdentifier );
+            } catch( RepositoryException e )
+            {
+                m_failedBefore = true;
+                throw e; // TODO rethrow safe ?
+            }
+        }
+    }
+
+    public synchronized InputStreamSource getContent()
+        throws RepositoryException
+    {
+        lazyResolve();
         return m_artifact.getContent();
     }
 
     public String getGroupId()
     {
-        return m_artifact.getGroupId();
+        return m_artifactIdentifier.getGroupId();
     }
 
     public String getArtifactId()

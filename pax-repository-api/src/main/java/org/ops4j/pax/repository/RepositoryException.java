@@ -25,4 +25,9 @@ public class RepositoryException extends Exception
     {
         super( msg, e );
     }
+
+    public RepositoryException( String s )
+    {
+        super( s );
+    }
 }

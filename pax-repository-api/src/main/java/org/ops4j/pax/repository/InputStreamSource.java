@@ -19,7 +19,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Indirection for reading from an input stream
+ * Indirection for reading from an input stream.
+ * Perhaps add metadata because we really have a resource here, not just "search for some GAV" thing.
  */
 public interface InputStreamSource
 {
