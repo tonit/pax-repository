@@ -30,8 +30,8 @@ public class LazyResolvingArtifact implements Artifact
     final private ArtifactIdentifier m_artifactIdentifier;
     final private RepositoryResolver m_resolver;
 
-    private Artifact m_artifact;
-    private boolean m_failedBefore = false;
+    private volatile Artifact m_artifact;
+    private volatile boolean m_failedBefore = false;
 
     public LazyResolvingArtifact( RepositoryResolver resolver, ArtifactIdentifier identifier )
         throws RepositoryException
@@ -75,21 +75,21 @@ public class LazyResolvingArtifact implements Artifact
 
     public String getArtifactId()
     {
-        return m_artifact.getArtifactId();
+        return m_artifactIdentifier.getArtifactId();
     }
 
     public String getVersion()
     {
-        return m_artifact.getVersion();
+        return m_artifactIdentifier.getVersion();
     }
 
     public String getClassifier()
     {
-        return m_artifact.getClassifier();
+        return m_artifactIdentifier.getClassifier();
     }
 
     public String getName()
     {
-        return m_artifact.getName();
+        return m_artifactIdentifier.getName();
     }
 }
