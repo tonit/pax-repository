@@ -27,19 +27,26 @@ public class StringToIdentifierParser
 
     public ArtifactIdentifier parse( String path )
     {
+
         String paths[] = path.split( ":" );
-
-        String groupId = paths[ 0 ];
-        String artifactId = paths[ 1 ];
-        String versionId = paths[ 2 ];
-        String classifier = null;
-
-        if( paths.length > 3 )
+        if( path.length() > 2 )
         {
-            classifier = paths[ 3 ];
-        }
+            String groupId = paths[ 0 ];
+            String artifactId = paths[ 1 ];
+            String versionId = paths[ 2 ];
+            String classifier = null;
 
-        return identifier( groupId, artifactId, versionId, classifier );
+            if( paths.length > 3 )
+            {
+                classifier = paths[ 3 ];
+            }
+
+            return identifier( groupId, artifactId, versionId, classifier );
+        }
+        else
+        {
+            throw new IllegalArgumentException( "Cannot parse \"" + path + "\" as <GROUP>:<ARTIFACT>:<VERSION>[:CLASSIFIER]." );
+        }
 
 
     }
