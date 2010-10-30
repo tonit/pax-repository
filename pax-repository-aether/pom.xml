@@ -15,7 +15,7 @@
 
     <properties>
         <aetherVersion>1.6</aetherVersion>
-        <mavenVersion>3.0-RC3</mavenVersion>
+        <mavenVersion>3.0</mavenVersion>
         <wagonVersion>1.0-beta-6</wagonVersion>
     </properties>
 
