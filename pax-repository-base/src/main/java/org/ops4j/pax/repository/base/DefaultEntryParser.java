@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 Toni Menzel
+ * Copyright (C) 2010 Okidokiteam
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,23 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository;
+package org.ops4j.pax.repository.base;
 
-import java.io.IOException;
-import java.io.InputStream;
+import org.ops4j.pax.repository.ArtifactEntry;
+import org.ops4j.pax.repository.EntryParser;
 
 /**
- * Indirection for reading from an input stream.
- * Perhaps add metadata because we really have a resource here, not just "search for some GAV" thing.
+ * Looping entry. So you will not get any gain other than ArtifactEntry which is a plain string.
  */
-public interface InputStreamSource
+public class DefaultEntryParser implements EntryParser<ArtifactEntry>
 {
 
-    /**
-     * @return the concrete, ready to use, stream.
-     *
-     * @throws java.io.IOException in case of a problem initializing the stream.
-     */
-    InputStream get()
-        throws IOException;
+    public ArtifactEntry parse( ArtifactEntry entry )
+    {
+        return entry;
+    }
 }

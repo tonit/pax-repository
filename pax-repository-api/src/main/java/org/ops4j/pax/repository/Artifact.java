@@ -1,9 +1,11 @@
 package org.ops4j.pax.repository;
 
+import org.ops4j.base.io.InputStreamSource;
+
 /**
- *
+ * A resolved artifact. You can get the resource
  */
-public interface Artifact extends ArtifactIdentifier
+public interface Artifact
 {
 
     /**

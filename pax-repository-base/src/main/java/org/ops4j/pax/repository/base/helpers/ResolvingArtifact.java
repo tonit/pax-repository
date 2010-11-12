@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository.resolver;
+package org.ops4j.pax.repository.base.helpers;
 
+import org.ops4j.base.io.InputStreamSource;
 import org.ops4j.pax.repository.Artifact;
-import org.ops4j.pax.repository.ArtifactIdentifier;
-import org.ops4j.pax.repository.InputStreamSource;
+import org.ops4j.pax.repository.ArtifactQuery;
 import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.RepositoryResolver;
 
@@ -29,10 +29,10 @@ public class ResolvingArtifact implements Artifact
 
     private Artifact m_artifact;
 
-    public ResolvingArtifact( RepositoryResolver resolver, ArtifactIdentifier identifier )
+    public ResolvingArtifact( RepositoryResolver resolver, ArtifactQuery identifier )
         throws RepositoryException
     {
-        m_artifact = resolver.find( identifier );
+        m_artifact = resolver.find( identifier ).iterator().next();
     }
 
     public InputStreamSource getContent()
@@ -41,28 +41,4 @@ public class ResolvingArtifact implements Artifact
         return m_artifact.getContent();
     }
 
-    public String getGroupId()
-    {
-        return m_artifact.getGroupId();
-    }
-
-    public String getArtifactId()
-    {
-        return m_artifact.getArtifactId();
-    }
-
-    public String getVersion()
-    {
-        return m_artifact.getVersion();
-    }
-
-    public String getClassifier()
-    {
-        return m_artifact.getClassifier();
-    }
-
-    public String getName()
-    {
-        return m_artifact.getName();
-    }
 }

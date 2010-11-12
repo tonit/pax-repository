@@ -14,5 +14,6 @@
     <packaging>jar</packaging>
 
     <name>OPS4J Pax Repository - API</name>
-    
+    <description>Classic Repository -- Query -- Resolver -- Result API</description>
+
 </project>

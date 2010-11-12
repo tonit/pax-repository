@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 Toni Menzel
+ * Copyright (C) 2010 Okidokiteam
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,10 @@
 package org.ops4j.pax.repository;
 
 /**
- * Access to a repository. Gracefully handles incomplete identifiers.. like missing version for example
+ * A entry inside a repository.
+ * Only used when writing repositories. (plumbing level)
  */
-public interface RepositoryResolver
+public interface ArtifactEntry
 {
-
-    /**
-     * Map an query to concrete resource.
-     *
-     * @param query what to find
-     *
-     * @return An artifact
-     *
-     * @throws RepositoryException in case of a problem.
-     */
-    SearchResult find( ArtifactQuery query )
-        throws RepositoryException;
+    
 }

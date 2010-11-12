@@ -15,13 +15,14 @@
  */
 package org.ops4j.pax.repository.resolver;
 
+import java.util.Iterator;
 import org.junit.Test;
 import org.ops4j.pax.repository.Artifact;
-import org.ops4j.pax.repository.ArtifactIdentifier;
+import org.ops4j.pax.repository.ArtifactQuery;
 import org.ops4j.pax.repository.Repository;
 import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.RepositoryResolver;
-import org.ops4j.pax.repository.RepositoryWriter;
+import org.ops4j.pax.repository.SearchResult;
 
 import static org.mockito.Mockito.*;
 import static org.ops4j.pax.repository.resolver.RepositoryFactory.*;
@@ -39,14 +40,16 @@ public class CreateAndQueryTest
         throws RepositoryException
     {
 
-        ArtifactIdentifier identifier = identifier( "org.ops4j.pax.profile.log", "0", "" );
+        ArtifactQuery query = createQuery( "org.ops4j.pax.profile.log" );
 
         Repository repos = mock( Repository.class );
-        RepositoryResolver resolver = new DefaultResolver(repos);
+        RepositoryResolver resolver = new DefaultResolver( repos );
 
-        Artifact res = resolver.find( identifier );
+        SearchResult res = resolver.find( query );
 
         // nothing found.
         assertNull( res );
+        Iterator<Artifact> iterator = res.iterator();
+        assertFalse( iterator.hasNext() );
     }
 }

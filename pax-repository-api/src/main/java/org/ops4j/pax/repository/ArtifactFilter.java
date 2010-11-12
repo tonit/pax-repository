@@ -3,8 +3,8 @@ package org.ops4j.pax.repository;
 /**
  *
  */
-public interface ArtifactFilter
+public interface ArtifactFilter<T>
 {
 
-    boolean allow( ArtifactIdentifier identifier );
+    boolean allow( T identifier );
 }

@@ -13,13 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository.resolver;
+package org.ops4j.pax.repository.maven;
 
 import java.io.File;
-import org.ops4j.pax.repository.Artifact;
-import org.ops4j.pax.repository.ArtifactIdentifier;
+import org.ops4j.pax.repository.ArtifactQuery;
 import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.RepositoryResolver;
+import org.ops4j.pax.repository.SearchResult;
+import org.ops4j.pax.repository.base.DefaultSearchResult;
+import org.ops4j.pax.repository.base.helpers.LocalArtifact;
 
 /**
  *
@@ -29,12 +31,15 @@ public class FastLocalM2Resolver implements RepositoryResolver
 
     private static final String SEP = "/";
 
-    public Artifact find( ArtifactIdentifier identifier )
+    public SearchResult find( ArtifactQuery query )
         throws RepositoryException
     {
+        // parse maven semantics:
+        GavArtifactQuery identifier = new GavArtifactQueryParser().parse( query );
+
         String group = identifier.getGroupId().replaceAll( "\\.", SEP );
         String local = System.getProperty( "user.home" ) + "/.m2/repository/";
         File f = new File( local + group + SEP + identifier.getArtifactId() + SEP + identifier.getVersion() + SEP + identifier.getArtifactId() + "-" + identifier.getVersion() + "." + identifier.getClassifier() );
-        return new LocalArtifact( identifier, f );
+        return new DefaultSearchResult( new LocalArtifact( f ) );
     }
 }

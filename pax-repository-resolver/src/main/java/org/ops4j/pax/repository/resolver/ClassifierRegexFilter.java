@@ -16,12 +16,12 @@
 package org.ops4j.pax.repository.resolver;
 
 import org.ops4j.pax.repository.ArtifactFilter;
-import org.ops4j.pax.repository.ArtifactIdentifier;
+import org.ops4j.pax.repository.ArtifactQuery;
 
 /**
  * Filter for regex on artifactId only.
  */
-public class ClassifierRegexFilter implements ArtifactFilter
+public class ClassifierRegexFilter<T> implements ArtifactFilter<T>
 {
 
     private String m_regex;
@@ -31,8 +31,8 @@ public class ClassifierRegexFilter implements ArtifactFilter
         m_regex = regex;
     }
 
-    public boolean allow( ArtifactIdentifier identifier )
+    public boolean allow( T identifier )
     {
-        return identifier.getClassifier().matches( m_regex );
+        return false; //return identifier.getClassifier().matches( m_regex );
     }
 }

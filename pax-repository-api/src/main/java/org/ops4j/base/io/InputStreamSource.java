@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository;
+package org.ops4j.base.io;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
- * Access to a repository. Gracefully handles incomplete identifiers.. like missing version for example
+ * Indirection for reading from an input stream.
+ * Perhaps add metadata because we really have a resource here, not just "search for some GAV" thing.
  */
-public interface RepositoryResolver
+public interface InputStreamSource
 {
 
     /**
-     * Map an query to concrete resource.
+     * @return the concrete, ready to use, stream.
      *
-     * @param query what to find
-     *
-     * @return An artifact
-     *
-     * @throws RepositoryException in case of a problem.
+     * @throws java.io.IOException in case of a problem initializing the stream.
      */
-    SearchResult find( ArtifactQuery query )
-        throws RepositoryException;
+    InputStream get()
+        throws IOException;
 }

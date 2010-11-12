@@ -13,27 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository.resolver;
+package org.ops4j.pax.repository.base.helpers;
 
+import java.util.Iterator;
 import org.ops4j.pax.repository.Artifact;
-import org.ops4j.pax.repository.ArtifactIdentifier;
-import org.ops4j.pax.repository.InputStreamSource;
+import org.ops4j.pax.repository.ArtifactQuery;
+import org.ops4j.base.io.InputStreamSource;
 import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.RepositoryResolver;
+import org.ops4j.pax.repository.SearchResult;
 
 /**
  *
  */
-public class LazyResolvingArtifact implements Artifact
+public class LazyResolvingSearchResult implements SearchResult
 {
 
-    final private ArtifactIdentifier m_artifactIdentifier;
+    final private ArtifactQuery m_artifactIdentifier;
     final private RepositoryResolver m_resolver;
 
-    private volatile Artifact m_artifact;
+    private volatile SearchResult m_result;
     private volatile boolean m_failedBefore = false;
 
-    public LazyResolvingArtifact( RepositoryResolver resolver, ArtifactIdentifier identifier )
+    public LazyResolvingSearchResult( RepositoryResolver resolver, ArtifactQuery identifier )
         throws RepositoryException
     {
         m_artifactIdentifier = identifier;
@@ -48,11 +50,11 @@ public class LazyResolvingArtifact implements Artifact
             throw new RepositoryException( "Artifact resolve has been failed before. Thus this artifact will not go any better." );
         }
 
-        if( m_artifact == null )
+        if( m_result == null )
         {
             try
             {
-                m_artifact = m_resolver.find( m_artifactIdentifier );
+                m_result = m_resolver.find( m_artifactIdentifier );
             } catch( RepositoryException e )
             {
                 m_failedBefore = true;
@@ -61,35 +63,15 @@ public class LazyResolvingArtifact implements Artifact
         }
     }
 
-    public synchronized InputStreamSource getContent()
-        throws RepositoryException
+    public Iterator<Artifact> iterator()
     {
-        lazyResolve();
-        return m_artifact.getContent();
-    }
-
-    public String getGroupId()
-    {
-        return m_artifactIdentifier.getGroupId();
-    }
-
-    public String getArtifactId()
-    {
-        return m_artifactIdentifier.getArtifactId();
-    }
-
-    public String getVersion()
-    {
-        return m_artifactIdentifier.getVersion();
-    }
-
-    public String getClassifier()
-    {
-        return m_artifactIdentifier.getClassifier();
-    }
-
-    public String getName()
-    {
-        return m_artifactIdentifier.getName();
+        try
+        {
+            lazyResolve();
+        } catch( RepositoryException e )
+        {
+            e.printStackTrace();
+        }
+        return m_result.iterator();
     }
 }

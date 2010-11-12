@@ -23,13 +23,14 @@
             </activation>
             <modules>
                 <module>pax-repository-api</module>
-                <module>pax-repository-resolver</module>
+                <module>pax-repository-base</module>
+
+                <module>pax-repository-maven-api</module>
                 <module>pax-repository-aether</module>
             </modules>
         </profile>
     </profiles>
 
-  
 
     <dependencyManagement>
         <dependencies>

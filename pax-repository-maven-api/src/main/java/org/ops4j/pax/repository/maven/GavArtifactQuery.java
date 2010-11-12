@@ -13,27 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository;
+package org.ops4j.pax.repository.maven;
+
+import org.ops4j.pax.repository.ArtifactQuery;
 
 /**
- * Create a repository using a RepositoryWriter.
+ *
  */
-public interface RepositoryWriter
+public interface GavArtifactQuery extends ArtifactQuery
 {
 
     /**
-     * Add an artifact to this repository.
-     * Note that resources may not be written after method returns. Be sure to close the transaction using calling {@link #close()}
+     * May be null.
      *
-     * @param id       identifier to be assiciated with artifact
-     * @param artifact content to be associated with the id param
-     *
-     * @return this. Fluent API
+     * @return groupId or null
      */
-    RepositoryWriter addArtifact( ArtifactIdentifier id, Artifact artifact );
+    String getGroupId();
 
     /**
-     * When done adding artifact, close this writer so resources can be persistened.
+     * May be null.
+     *
+     * @return artifactId or null
      */
-    void close();
+    String getArtifactId();
+
+    /**
+     * May be null.
+     *
+     * @return version or null
+     */
+    String getVersion();
+
+    /**
+     * May be null.
+     *
+     * @return classifier or null
+     */
+    String getClassifier();
+
 }

@@ -15,44 +15,50 @@
  */
 package org.ops4j.pax.repository.resolver;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.ops4j.pax.repository.Artifact;
-import org.ops4j.pax.repository.ArtifactIdentifier;
-import org.ops4j.pax.repository.RepositoryException;
-import org.ops4j.pax.repository.RepositoryResolver;
+import org.ops4j.pax.repository.ArtifactEntry;
+import org.ops4j.pax.repository.ArtifactQuery;
+import org.ops4j.pax.repository.base.DefaultEntry;
+import org.ops4j.pax.repository.base.DefaultQuery;
 
 /**
  *
  */
 public class RepositoryFactory
 {
-
-    public static ArtifactIdentifier parseFromURL( String fullQualifier )
+    public static ArtifactQuery createQuery( String query )
     {
 
-        return new StringToIdentifierParser().parse( fullQualifier );
+        return new DefaultQuery(query);
 
     }
 
-    public static ArtifactIdentifier identifier( String id, String version, String classifier )
+    public static ArtifactEntry entry( String entry )
     {
 
-        ArtifactIdentifier artifact = new DefaultArtifactIdentifier( id, version, classifier );
+        return new DefaultEntry(entry);
+
+    }
+/**
+    public static ArtifactQuery identifier( String id, String version, String classifier )
+    {
+
+        ArtifactQuery artifact = new DefaultArtifactIdentifier( id, version, classifier );
         return artifact;
     }
 
-    public static ArtifactIdentifier identifier( String groupId, String artifactId, String version, String classifier )
+    public static ArtifactQuery identifier( String groupId, String artifactId, String version, String classifier )
     {
 
-        ArtifactIdentifier artifact = new DefaultArtifactIdentifier( groupId, artifactId, version, classifier );
+        ArtifactQuery artifact = new DefaultArtifactIdentifier( groupId, artifactId, version, classifier );
         return artifact;
     }
-
-    public static ArtifactIdentifier parseFromPath( String path )
+**/
+    /**
+    public static ArtifactQuery parseFromPath( String path )
     {
         return new PathToIdentifierParser().parse( path );
     }
+     **/
 
     /**
      * Helper to transform a list of identifiers (in string form) directly into a list of (resolved) artifacts.
@@ -66,6 +72,7 @@ public class RepositoryFactory
      * @throws org.ops4j.pax.repository.RepositoryException
      *          in case of a resolver error (e.g.)
      */
+    /**
     public static Artifact[] resolveEager( RepositoryResolver repositoryResolver, String... fullQualifier )
         throws RepositoryException
     {
@@ -77,11 +84,13 @@ public class RepositoryFactory
         }
         return list.toArray( new Artifact[ list.size() ] );
     }
+     **/
 
     /**
      * @param repositoryResolver to use for resolving process.
      * @param fullQualifier      qualifier to be resolved.
      */
+    /**
     public static Artifact[] resolveLazy( RepositoryResolver repositoryResolver, String... fullQualifier )
         throws RepositoryException
     {
@@ -93,6 +102,6 @@ public class RepositoryFactory
         }
         return list.toArray( new Artifact[ list.size() ] );
     }
-
+**/
 
 }

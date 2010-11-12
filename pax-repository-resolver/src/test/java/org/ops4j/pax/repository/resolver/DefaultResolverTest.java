@@ -18,16 +18,16 @@ package org.ops4j.pax.repository.resolver;
 import java.io.IOException;
 import java.io.InputStream;
 import org.junit.Test;
-import org.ops4j.pax.repository.Artifact;
-import org.ops4j.pax.repository.ArtifactIdentifier;
-import org.ops4j.pax.repository.InputStreamSource;
+import org.ops4j.base.io.InputStreamSource;
+import org.ops4j.pax.repository.ArtifactEntry;
 import org.ops4j.pax.repository.Repository;
 import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.RepositoryResolver;
+import org.ops4j.pax.repository.SearchResult;
+import org.ops4j.pax.repository.base.DefaultEntryParser;
 import org.ops4j.store.StoreFactory;
 
 import static junit.framework.Assert.*;
-import static org.mockito.Mockito.*;
 import static org.ops4j.pax.repository.resolver.RepositoryFactory.*;
 
 /**
@@ -50,15 +50,16 @@ public class DefaultResolverTest
         throws RepositoryException, IOException
     {
 
-        Repository repository = new ZipRepository(
+        Repository<ArtifactEntry> repository = new ZipRepository<ArtifactEntry>(
             source( getClass().getResourceAsStream( TEST_JAR ) ),
-            new ClassifierRegexFilter( "composite" ),
-            StoreFactory.anonymousStore()
+            new ClassifierRegexFilter<ArtifactEntry>( "composite" ),
+            StoreFactory.anonymousStore(),
+            new DefaultEntryParser()
         );
 
-        RepositoryResolver resolver = new DefaultResolver( repository );
+        RepositoryResolver resolver = new DefaultResolver<ArtifactEntry>( repository );
 
-        Artifact res = resolver.find( identifier( "org.ops4j.pax.runner.profiles.blueprint.blueprint", "0", "composite" ) );
+        SearchResult res = resolver.find( createQuery( "org.ops4j.pax.runner.profiles.blueprint.blueprint:0:composite" ) );
 
         // nothing found.
         assertNotNull( res );

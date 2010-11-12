@@ -13,35 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository.resolver;
+package org.ops4j.pax.repository.base.helpers;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import org.ops4j.pax.repository.Artifact;
-import org.ops4j.pax.repository.ArtifactIdentifier;
-import org.ops4j.pax.repository.RepositoryWriter;
+import org.ops4j.pax.repository.ArtifactQuery;
+import org.ops4j.base.io.InputStreamSource;
 
 /**
- * Default, simple implementation.
+ * Local Artifact.
  */
-public class DefaultRepositoryWriter implements RepositoryWriter
+public class LocalArtifact implements Artifact
 {
 
-    public DefaultRepositoryWriter()
-    {
+    private final File m_file;
 
+    public LocalArtifact( File file )
+    {
+        m_file = file;
     }
 
-    private final Map<ArtifactIdentifier, Artifact> m_repo = new HashMap<ArtifactIdentifier, Artifact>();
-
-    public RepositoryWriter addArtifact( ArtifactIdentifier id, Artifact artifact )
+    public InputStreamSource getContent()
     {
-        
-        return this;
-    }
+        return new InputStreamSource()
+        {
 
-    public void close()
-    {
-        
+            public InputStream get()
+                throws IOException
+            {
+                return new FileInputStream( m_file );
+            }
+        };
     }
 }

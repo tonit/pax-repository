@@ -18,7 +18,7 @@ package org.ops4j.pax.repository;
 /**
  * Encapsulates
  */
-public interface Repository
+public interface Repository<T>
 {
 
     /**
@@ -28,7 +28,7 @@ public interface Repository
      *
      * @throws RepositoryException In case of a problem.
      */
-    void index( QueryVisitor visitor )
+    void index( IndexVisitor<T> visitor )
         throws RepositoryException;
 
     /**
@@ -39,7 +39,7 @@ public interface Repository
      * @return The artifact itself.
      * @throws RepositoryException In case of a problem
      */
-    Artifact retrieve( ArtifactIdentifier identifier )
+    Artifact retrieve( T identifier )
         throws RepositoryException;
 
 }

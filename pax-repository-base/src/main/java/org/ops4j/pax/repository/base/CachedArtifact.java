@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository.resolver;
+package org.ops4j.pax.repository.base;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.zip.ZipInputStream;
 import org.ops4j.pax.repository.Artifact;
-import org.ops4j.pax.repository.ArtifactIdentifier;
-import org.ops4j.pax.repository.InputStreamSource;
+import org.ops4j.pax.repository.ArtifactQuery;
+import org.ops4j.base.io.InputStreamSource;
 import org.ops4j.store.Handle;
 import org.ops4j.store.Store;
 
@@ -32,16 +31,14 @@ public class CachedArtifact implements Artifact
 
     private final Store<InputStream> m_store;
     private final Handle m_handle;
-    private final ArtifactIdentifier m_ident;
 
-    public CachedArtifact( ArtifactIdentifier ident, Store<InputStream> store, InputStream inp )
+    public CachedArtifact( Store<InputStream> store, InputStream inp )
         throws IOException
     {
         m_store = store;
         m_handle = store.store( inp );
-        m_ident = ident;
     }
-    
+
     public InputStreamSource getContent()
     {
         return new InputStreamSource()
@@ -55,28 +52,5 @@ public class CachedArtifact implements Artifact
         };
     }
 
-    public String getGroupId()
-    {
-        return m_ident.getGroupId();
-    }
 
-    public String getArtifactId()
-    {
-        return m_ident.getArtifactId();
-    }
-
-    public String getVersion()
-    {
-        return m_ident.getVersion();
-    }
-
-    public String getClassifier()
-    {
-        return m_ident.getClassifier();
-    }
-
-    public String getName()
-    {
-        return m_ident.getName();
-    }
 }

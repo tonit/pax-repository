@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository.resolver;
+package org.ops4j.pax.repository.base;
 
-import org.ops4j.pax.repository.Artifact;
-import org.ops4j.pax.repository.ArtifactIdentifier;
+import java.util.ArrayList;
+import java.util.List;
+import org.ops4j.pax.repository.ArtifactQuery;
 import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.RepositoryResolver;
+import org.ops4j.pax.repository.SearchResult;
 
 /**
  * Simple composite of resolvers.
- * Does record resolved artifacts (so second lookup is faster). It is assumed that users of this class implements the "caching".
  */
 public class CompositeResolver implements RepositoryResolver
 {
@@ -34,17 +35,18 @@ public class CompositeResolver implements RepositoryResolver
         m_resolvers = resolvers;
     }
 
-    public Artifact find( ArtifactIdentifier identifier )
+    public SearchResult find( ArtifactQuery query )
         throws RepositoryException
     {
+        List<SearchResult> sr = new ArrayList<SearchResult>();
         for( RepositoryResolver resolver : m_resolvers )
         {
-            Artifact artifact = resolver.find( identifier );
+            SearchResult artifact = resolver.find( query );
             if( artifact != null )
             {
-                return artifact;
+                sr.add( artifact );
             }
         }
-        return null;
+        return new CompositeSearchResult( sr );
     }
 }

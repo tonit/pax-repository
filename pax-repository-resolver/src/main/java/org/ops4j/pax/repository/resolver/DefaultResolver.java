@@ -18,47 +18,46 @@ package org.ops4j.pax.repository.resolver;
 import java.util.HashMap;
 import java.util.Map;
 import org.ops4j.pax.repository.Artifact;
-import org.ops4j.pax.repository.ArtifactIdentifier;
-import org.ops4j.pax.repository.QueryVisitor;
+import org.ops4j.pax.repository.ArtifactQuery;
+import org.ops4j.pax.repository.IndexVisitor;
 import org.ops4j.pax.repository.Repository;
 import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.RepositoryResolver;
-
-import static org.ops4j.pax.repository.resolver.RepositoryFactory.*;
+import org.ops4j.pax.repository.SearchResult;
 
 /**
  * This resolver requires a repository underneath that provides a full index that can be visited.
  * Should not be used for adhoc queries against foreign repositories.
  */
-public class DefaultResolver implements RepositoryResolver
+public class DefaultResolver<T> implements RepositoryResolver
 {
 
     final private Repository m_repository;
     final private Map<String, String> m_highestVersion = new HashMap<String, String>();
 
-    public DefaultResolver( Repository repos )
+    public DefaultResolver( Repository<T> repos )
         throws RepositoryException
     {
         assert repos != null : "Repository may never be null.";
         m_repository = repos;
-        repos.index( new QueryVisitor()
+        repos.index( new IndexVisitor<T>()
         {
 
-            public void touch( ArtifactIdentifier key )
+            public void touch( T key )
             {
-                if( m_highestVersion.containsKey( key.getName() ) )
+                if( m_highestVersion.containsKey( key.getQueryString() ) )
                 {
                     String version = key.getVersion();
-                    String versionOld = m_highestVersion.get( key.getName() );
+                    String versionOld = m_highestVersion.get( key.getQueryString() );
                     if( version.compareTo( versionOld ) > 0 )
                     {
-                        m_highestVersion.put( key.getName(), key.getVersion() );
+                        m_highestVersion.put( key.getQueryString(), key.getVersion() );
 
                     }
                 }
                 else
                 {
-                    m_highestVersion.put( key.getName(), key.getVersion() );
+                    m_highestVersion.put( key.getQueryString(), key.getVersion() );
                 }
             }
         }
@@ -69,21 +68,21 @@ public class DefaultResolver implements RepositoryResolver
     /**
      * {@inheritDoc}
      */
-    public Artifact find( ArtifactIdentifier ident )
+    public SearchResult find( ArtifactQuery query )
         throws RepositoryException
     {
         // must support graceful reduction of possibly incomplete identifier scheme
 
         // direct access:
-        Artifact artifact = m_repository.retrieve( ident );
+        Artifact artifact = m_repository.retrieve( query );
 
         if( artifact == null )
         {
             // ask highest version index:
-            String version = m_highestVersion.get( ident.getName() );
+            String version = m_highestVersion.get( query.getQueryString() );
             if( version != null )
             {
-                return m_repository.retrieve( identifier( ident.getArtifactId(), version, ident.getClassifier() ) );
+                return m_repository.retrieve( identifier( query.getArtifactId(), version, query.getClassifier() ) );
             }
 
         }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 Toni Menzel
+ * Copyright (C) 2010 Okidokiteam
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,23 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository;
+package org.ops4j.pax.repository.base;
+
+import org.ops4j.pax.repository.ArtifactQuery;
 
 /**
- * Access to a repository. Gracefully handles incomplete identifiers.. like missing version for example
+ * Simple, un-parsed wrapper of a query.
  */
-public interface RepositoryResolver
+public class DefaultQuery implements ArtifactQuery
 {
 
-    /**
-     * Map an query to concrete resource.
-     *
-     * @param query what to find
-     *
-     * @return An artifact
-     *
-     * @throws RepositoryException in case of a problem.
-     */
-    SearchResult find( ArtifactQuery query )
-        throws RepositoryException;
+    final private String m_query;
+
+    public DefaultQuery( String query )
+    {
+        m_query = query;
+    }
+
+    public String getQueryString()
+    {
+        return m_query;
+    }
 }

@@ -16,7 +16,7 @@
 package org.ops4j.pax.repository.resolver;
 
 import java.util.regex.Pattern;
-import org.ops4j.pax.repository.ArtifactIdentifier;
+import org.ops4j.pax.repository.ArtifactQuery;
 
 import static org.ops4j.pax.repository.resolver.RepositoryFactory.*;
 
@@ -26,7 +26,7 @@ import static org.ops4j.pax.repository.resolver.RepositoryFactory.*;
 public class PathToIdentifierParser
 {
 
-    public ArtifactIdentifier parse( String path )
+    public ArtifactQuery parse( String path )
     {
         String paths[] = path.split( "/" );
 
@@ -37,7 +37,7 @@ public class PathToIdentifierParser
 
     }
 
-    private ArtifactIdentifier parseStripped( String tail )
+    private ArtifactQuery parseStripped( String tail )
     {
         String name = "";
         String version = "0";

@@ -13,21 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository.resolver;
+package org.ops4j.pax.repository.maven;
 
-import org.ops4j.pax.repository.ArtifactIdentifier;
-
-import static org.ops4j.pax.repository.resolver.RepositoryFactory.*;
+import org.ops4j.pax.repository.ArtifactQuery;
+import org.ops4j.pax.repository.Parser;
 
 /**
  * Parses a string of format: GROUP:ARTIFACT:VERSION[:classifier] to an identifier.
  */
-public class StringToIdentifierParser
+public class GavArtifactQueryParser implements Parser<ArtifactQuery, GavArtifactQuery>
 {
 
-    public ArtifactIdentifier parse( String path )
+    public GavArtifactQuery parse( ArtifactQuery q )
     {
 
+        String path = q.getQueryString();
         String paths[] = path.split( ":" );
         if( path.length() > 2 )
         {
@@ -41,7 +41,7 @@ public class StringToIdentifierParser
                 classifier = paths[ 3 ];
             }
 
-            return identifier( groupId, artifactId, versionId, classifier );
+            return new DefaultArtifactQuery( groupId, artifactId, versionId, classifier );
         }
         else
         {

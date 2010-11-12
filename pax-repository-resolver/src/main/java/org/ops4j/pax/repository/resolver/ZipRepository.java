@@ -15,45 +15,46 @@
  */
 package org.ops4j.pax.repository.resolver;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import org.ops4j.base.io.InputStreamSource;
 import org.ops4j.pax.repository.Artifact;
 import org.ops4j.pax.repository.ArtifactFilter;
-import org.ops4j.pax.repository.ArtifactIdentifier;
-import org.ops4j.pax.repository.InputStreamSource;
-import org.ops4j.pax.repository.QueryVisitor;
+import org.ops4j.pax.repository.EntryParser;
+import org.ops4j.pax.repository.IndexVisitor;
 import org.ops4j.pax.repository.Repository;
 import org.ops4j.pax.repository.RepositoryException;
+import org.ops4j.pax.repository.base.CachedArtifact;
 import org.ops4j.store.Store;
-import org.ops4j.store.StoreFactory;
+
+import static org.ops4j.pax.repository.resolver.RepositoryFactory.*;
 
 /**
  * Repository implementation that reads from zip and stores in underlying flat-file cache.
  */
-public class ZipRepository implements Repository
+public class ZipRepository<T> implements Repository<T>
 {
 
-    private final Map<ArtifactIdentifier, Artifact> m_map = new HashMap<ArtifactIdentifier, Artifact>();
+    private final Map<T, Artifact> m_map = new HashMap<T, Artifact>();
 
-    public ZipRepository( final InputStreamSource input, ArtifactFilter filter, Store<InputStream> store )
+    public ZipRepository( final InputStreamSource input, ArtifactFilter<T> filter, Store<InputStream> store, EntryParser<T> parser )
         throws RepositoryException
     {
         try
         {
             ZipInputStream inp = new ZipInputStream( input.get() );
-            ZipEntry entry;
-            PathToIdentifierParser parser = new PathToIdentifierParser();
-            while( ( entry = inp.getNextEntry() ) != null )
+            ZipEntry zipEntry;
+            while( ( zipEntry = inp.getNextEntry() ) != null )
             {
-                ArtifactIdentifier id = parser.parse( entry.getName() );
+                // We have a string.
+                T id = parser.parse( entry( zipEntry.getName() ) );
                 if( filter.allow( id ) )
                 {
-                    m_map.put( id, new CachedArtifact( id, store, inp ) );
+                    m_map.put( id, new CachedArtifact( store, inp ) );
                 }
             }
         } catch( IOException e )
@@ -62,16 +63,16 @@ public class ZipRepository implements Repository
         }
     }
 
-    public void index( QueryVisitor visit )
+    public void index( IndexVisitor<T> visit )
         throws RepositoryException
     {
-        for( ArtifactIdentifier key : m_map.keySet() )
+        for( T key : m_map.keySet() )
         {
             visit.touch( key );
         }
     }
 
-    public Artifact retrieve( final ArtifactIdentifier id )
+    public Artifact retrieve( final T id )
         throws RepositoryException
     {
         return m_map.get( id );

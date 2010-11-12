@@ -13,29 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository.resolver;
+package org.ops4j.pax.repository.base;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import org.ops4j.pax.repository.ArtifactIdentifier;
-import org.ops4j.pax.repository.QueryVisitor;
+import org.ops4j.pax.repository.ArtifactEntry;
 
 /**
- * For test purpose.
+ *
  */
-public class IdentifierRecorder implements QueryVisitor, Iterable<ArtifactIdentifier>
+public class DefaultEntry implements ArtifactEntry
 {
 
-    private List<ArtifactIdentifier> m_recorded = new ArrayList<ArtifactIdentifier>();
+    private String m_entry;
 
-    public void touch( ArtifactIdentifier id )
+    public DefaultEntry( String entry )
     {
-        m_recorded.add( id );
-    }
-
-    public Iterator<ArtifactIdentifier> iterator()
-    {
-        return m_recorded.iterator();
+        m_entry = entry;
     }
 }

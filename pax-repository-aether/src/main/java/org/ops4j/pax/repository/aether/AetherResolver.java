@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository;
+package org.ops4j.pax.repository.aether;
 
 import java.io.File;
 import org.apache.commons.logging.Log;
@@ -34,7 +34,14 @@ import org.sonatype.aether.repository.RemoteRepository;
 import org.sonatype.aether.resolution.ArtifactResolutionException;
 import org.sonatype.aether.spi.connector.RepositoryConnectorFactory;
 import org.sonatype.aether.util.artifact.DefaultArtifact;
-import org.ops4j.pax.repository.resolver.LocalArtifact;
+import org.ops4j.pax.repository.ArtifactQuery;
+import org.ops4j.pax.repository.RepositoryException;
+import org.ops4j.pax.repository.RepositoryResolver;
+import org.ops4j.pax.repository.SearchResult;
+import org.ops4j.pax.repository.base.DefaultSearchResult;
+import org.ops4j.pax.repository.base.helpers.LocalArtifact;
+import org.ops4j.pax.repository.maven.GavArtifactQuery;
+import org.ops4j.pax.repository.maven.GavArtifactQueryParser;
 
 /**
  *
@@ -47,12 +54,6 @@ public class AetherResolver implements RepositoryResolver
     final private String m_localRepo;
     final private String[] m_repositories;
     final private RepositorySystem m_repoSystem;
-
-    public org.ops4j.pax.repository.Artifact find( ArtifactIdentifier identifier )
-        throws RepositoryException
-    {
-        return new LocalArtifact( identifier, resolve( identifier ) );
-    }
 
     public AetherResolver( String local, String... repos )
     {
@@ -68,18 +69,27 @@ public class AetherResolver implements RepositoryResolver
         m_repoSystem = newRepositorySystem();
     }
 
+    public SearchResult find( ArtifactQuery query )
+        throws RepositoryException
+    {
+        return new DefaultSearchResult( new LocalArtifact( resolve( query ) ) );
+    }
+
     public AetherResolver()
     {
         this( null );
     }
 
-    private File resolve( ArtifactIdentifier identifier )
+    private File resolve( ArtifactQuery query )
         throws RepositoryException
     {
+        GavArtifactQuery identifier = new GavArtifactQueryParser().parse( query );
+
         try
         {
             RepositorySystemSession session = newSession( m_repoSystem );
 
+            // parse query to gav:
             Dependency dependency = new Dependency( new DefaultArtifact( identifier.getGroupId(), identifier.getArtifactId(), identifier.getClassifier(), identifier.getVersion() ), "provided" );
             CollectRequest collectRequest = prepareResolveRequest( dependency );
             DependencyNode node = m_repoSystem.collectDependencies( session, collectRequest ).getRoot();

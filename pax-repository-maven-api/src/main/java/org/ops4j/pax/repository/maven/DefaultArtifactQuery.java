@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository.resolver;
+package org.ops4j.pax.repository.maven;
 
-import org.ops4j.pax.repository.ArtifactIdentifier;
+import org.ops4j.pax.repository.ArtifactQuery;
 
 /**
  *
  */
-public class DefaultArtifactIdentifier implements ArtifactIdentifier
+public class DefaultArtifactQuery implements GavArtifactQuery
 {
 
     final private String m_artifact;
@@ -32,7 +32,7 @@ public class DefaultArtifactIdentifier implements ArtifactIdentifier
     private static final String DEFAULT_VERSION = "0";
     private static final String DEFAULT_CLASSIFIER = "";
 
-    public DefaultArtifactIdentifier( String group, String artifact, String version, String classifier )
+    public DefaultArtifactQuery( String group, String artifact, String version, String classifier )
     {
         m_artifact = artifact;
         m_group = group;
@@ -49,12 +49,12 @@ public class DefaultArtifactIdentifier implements ArtifactIdentifier
         }
     }
 
-    public DefaultArtifactIdentifier( String name, String version, String classifier )
+    public DefaultArtifactQuery( String name, String version, String classifier )
     {
         this( "", name, version, classifier );
     }
 
-    public DefaultArtifactIdentifier( String id )
+    public DefaultArtifactQuery( String id )
     {
         this( id, DEFAULT_VERSION, DEFAULT_CLASSIFIER );
     }
@@ -78,10 +78,10 @@ public class DefaultArtifactIdentifier implements ArtifactIdentifier
     @Override
     public boolean equals( Object obj )
     {
-        if( obj instanceof ArtifactIdentifier )
+        if( obj instanceof ArtifactQuery )
         {
-            ArtifactIdentifier comp = (ArtifactIdentifier) obj;
-            return ( getName() ).equals( ( comp.getName() ) );
+            ArtifactQuery comp = (ArtifactQuery) obj;
+            return ( getQueryString() ).equals( ( comp.getQueryString() ) );
         }
         else
         {
@@ -99,7 +99,7 @@ public class DefaultArtifactIdentifier implements ArtifactIdentifier
         return m_classifier;
     }
 
-    public String getName()
+    public String getQueryString()
     {
         return m_group + ":" + m_artifact + ":" + m_classifier;
     }
@@ -107,6 +107,6 @@ public class DefaultArtifactIdentifier implements ArtifactIdentifier
     @Override
     public String toString()
     {
-        return "[ ArtifactIdentifier group=" + m_group + " artifact=" + m_artifact + " version=" + m_version + " classifier=" + m_classifier + " ]";
+        return "[ ArtifactQuery group=" + m_group + " artifact=" + m_artifact + " version=" + m_version + " classifier=" + m_classifier + " ]";
     }
 }

@@ -23,9 +23,15 @@
     <dependencies>
         <dependency>
             <groupId>org.ops4j.pax.repository</groupId>
-            <artifactId>pax-repository-resolver</artifactId>
+            <artifactId>pax-repository-base</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.repository</groupId>
+            <artifactId>pax-repository-maven-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- aether stuff -->
         <dependency>
             <groupId>org.sonatype.aether</groupId>
