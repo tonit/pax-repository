@@ -35,7 +35,6 @@ public class FastLocalM2Resolver implements RepositoryResolver
         String group = identifier.getGroupId().replaceAll( "\\.", SEP );
         String local = System.getProperty( "user.home" ) + "/.m2/repository/";
         File f = new File( local + group + SEP + identifier.getArtifactId() + SEP + identifier.getVersion() + SEP + identifier.getArtifactId() + "-" + identifier.getVersion() + "." + identifier.getClassifier() );
-        System.out.println( "locating " + f.getAbsolutePath() );
         return new LocalArtifact( identifier, f );
     }
 }
