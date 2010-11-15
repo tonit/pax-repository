@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.repository;
+package org.ops4j.pax.repository.spi;
+
+import org.ops4j.pax.repository.Artifact;
+import org.ops4j.pax.repository.RepositoryException;
 
 /**
  * Encapsulates
@@ -26,7 +29,7 @@ public interface Repository<T>
      *
      * @param visitor A visitor that collects the data.
      *
-     * @throws RepositoryException In case of a problem.
+     * @throws org.ops4j.pax.repository.RepositoryException In case of a problem.
      */
     void index( IndexVisitor<T> visitor )
         throws RepositoryException;

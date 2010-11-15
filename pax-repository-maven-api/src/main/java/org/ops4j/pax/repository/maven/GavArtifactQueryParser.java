@@ -16,7 +16,7 @@
 package org.ops4j.pax.repository.maven;
 
 import org.ops4j.pax.repository.ArtifactQuery;
-import org.ops4j.pax.repository.Parser;
+import org.ops4j.pax.repository.spi.Parser;
 
 /**
  * Parses a string of format: GROUP:ARTIFACT:VERSION[:classifier] to an identifier.

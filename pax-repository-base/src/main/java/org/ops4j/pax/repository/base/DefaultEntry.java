@@ -15,7 +15,7 @@
  */
 package org.ops4j.pax.repository.base;
 
-import org.ops4j.pax.repository.ArtifactEntry;
+import org.ops4j.pax.repository.spi.ArtifactEntry;
 
 /**
  *

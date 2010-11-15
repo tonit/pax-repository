@@ -21,7 +21,7 @@ import java.net.URL;
 import org.ops4j.base.io.InputStreamSource;
 import org.ops4j.pax.repository.Artifact;
 import org.ops4j.pax.repository.ArtifactQuery;
-import org.ops4j.pax.repository.Parser;
+import org.ops4j.pax.repository.spi.Parser;
 import org.ops4j.pax.repository.RepositoryException;
 import org.ops4j.pax.repository.Resolver;
 

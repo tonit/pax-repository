@@ -15,8 +15,8 @@
  */
 package org.ops4j.pax.repository.base;
 
-import org.ops4j.pax.repository.ArtifactEntry;
-import org.ops4j.pax.repository.EntryParser;
+import org.ops4j.pax.repository.spi.ArtifactEntry;
+import org.ops4j.pax.repository.spi.EntryParser;
 
 /**
  * Looping entry. So you will not get any gain other than ArtifactEntry which is a plain string.

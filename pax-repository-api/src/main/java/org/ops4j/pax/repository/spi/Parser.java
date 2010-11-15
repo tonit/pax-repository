@@ -1,4 +1,4 @@
-package org.ops4j.pax.repository;
+package org.ops4j.pax.repository.spi;
 
 /**
  * Parser for specialising a type to a more concrete sub-type

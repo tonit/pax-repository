@@ -15,6 +15,27 @@
 
     <name>OPS4J Pax Repository - Parent</name>
 
+    <scm>
+        <connection>scm:git:git@github.com:tonit/pax-repository.git</connection>
+        <developerConnection>scm:git:git@github.com:tonit/pax-repository.git</developerConnection>
+        <url>git@github.com:tonit/pax-repository.git</url>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>local.release</id>
+            <name>Nexus Local Release Repo</name>
+            <url>http://localhost:8081:/nexus/content/repositories/releases/</url>
+        </repository>
+        <!--
+        <repository>
+            <id>okidokiteam.snapshots</id>
+            <name>Nexus Snapshot Repo</name>
+            <url>http://okidokiteam.com:/nexus/content/repositories/snapshots/</url>
+        </repository>
+        -->
+    </distributionManagement>
+
     <profiles>
         <profile>
             <id>default</id>
