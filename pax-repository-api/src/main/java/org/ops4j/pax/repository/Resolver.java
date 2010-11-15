@@ -18,7 +18,7 @@ package org.ops4j.pax.repository;
 /**
  * Access to a repository. Gracefully handles incomplete identifiers.. like missing version for example
  */
-public interface RepositoryResolver
+public interface Resolver
 {
 
     /**
@@ -30,6 +30,6 @@ public interface RepositoryResolver
      *
      * @throws RepositoryException in case of a problem.
      */
-    SearchResult find( ArtifactQuery query )
+    Artifact find( ArtifactQuery query )
         throws RepositoryException;
 }

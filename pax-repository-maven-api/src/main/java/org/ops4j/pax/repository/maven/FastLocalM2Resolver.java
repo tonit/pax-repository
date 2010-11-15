@@ -16,22 +16,21 @@
 package org.ops4j.pax.repository.maven;
 
 import java.io.File;
+import org.ops4j.pax.repository.Artifact;
 import org.ops4j.pax.repository.ArtifactQuery;
 import org.ops4j.pax.repository.RepositoryException;
-import org.ops4j.pax.repository.RepositoryResolver;
-import org.ops4j.pax.repository.SearchResult;
-import org.ops4j.pax.repository.base.DefaultSearchResult;
+import org.ops4j.pax.repository.Resolver;
 import org.ops4j.pax.repository.base.helpers.LocalArtifact;
 
 /**
  *
  */
-public class FastLocalM2Resolver implements RepositoryResolver
+public class FastLocalM2Resolver implements Resolver
 {
 
     private static final String SEP = "/";
 
-    public SearchResult find( ArtifactQuery query )
+    public Artifact find( ArtifactQuery query )
         throws RepositoryException
     {
         // parse maven semantics:
@@ -40,6 +39,6 @@ public class FastLocalM2Resolver implements RepositoryResolver
         String group = identifier.getGroupId().replaceAll( "\\.", SEP );
         String local = System.getProperty( "user.home" ) + "/.m2/repository/";
         File f = new File( local + group + SEP + identifier.getArtifactId() + SEP + identifier.getVersion() + SEP + identifier.getArtifactId() + "-" + identifier.getVersion() + "." + identifier.getClassifier() );
-        return new DefaultSearchResult( new LocalArtifact( f ) );
+        return new LocalArtifact( f );
     }
 }

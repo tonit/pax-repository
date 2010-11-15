@@ -15,38 +15,35 @@
  */
 package org.ops4j.pax.repository.base;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.ops4j.pax.repository.Artifact;
 import org.ops4j.pax.repository.ArtifactQuery;
 import org.ops4j.pax.repository.RepositoryException;
-import org.ops4j.pax.repository.RepositoryResolver;
-import org.ops4j.pax.repository.SearchResult;
+import org.ops4j.pax.repository.Resolver;
 
 /**
  * Simple composite of resolvers.
  */
-public class CompositeResolver implements RepositoryResolver
+public class CompositeResolver implements Resolver
 {
 
-    private RepositoryResolver[] m_resolvers;
+    private Resolver[] m_resolvers;
 
-    public CompositeResolver( RepositoryResolver... resolvers )
+    public CompositeResolver( Resolver... resolvers )
     {
         m_resolvers = resolvers;
     }
 
-    public SearchResult find( ArtifactQuery query )
+    public Artifact find( ArtifactQuery query )
         throws RepositoryException
     {
-        List<SearchResult> sr = new ArrayList<SearchResult>();
-        for( RepositoryResolver resolver : m_resolvers )
+        for( Resolver resolver : m_resolvers )
         {
-            SearchResult artifact = resolver.find( query );
+            Artifact artifact = resolver.find( query );
             if( artifact != null )
             {
-                sr.add( artifact );
+                return artifact;
             }
         }
-        return new CompositeSearchResult( sr );
+        return null;
     }
 }

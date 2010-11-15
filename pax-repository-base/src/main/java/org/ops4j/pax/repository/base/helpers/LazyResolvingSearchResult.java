@@ -15,27 +15,25 @@
  */
 package org.ops4j.pax.repository.base.helpers;
 
-import java.util.Iterator;
+import org.ops4j.base.io.InputStreamSource;
 import org.ops4j.pax.repository.Artifact;
 import org.ops4j.pax.repository.ArtifactQuery;
-import org.ops4j.base.io.InputStreamSource;
 import org.ops4j.pax.repository.RepositoryException;
-import org.ops4j.pax.repository.RepositoryResolver;
-import org.ops4j.pax.repository.SearchResult;
+import org.ops4j.pax.repository.Resolver;
 
 /**
  *
  */
-public class LazyResolvingSearchResult implements SearchResult
+public class LazyResolvingSearchResult implements Artifact
 {
 
     final private ArtifactQuery m_artifactIdentifier;
-    final private RepositoryResolver m_resolver;
+    final private Resolver m_resolver;
 
-    private volatile SearchResult m_result;
+    private volatile Artifact m_result;
     private volatile boolean m_failedBefore = false;
 
-    public LazyResolvingSearchResult( RepositoryResolver resolver, ArtifactQuery identifier )
+    public LazyResolvingSearchResult( Resolver resolver, ArtifactQuery identifier )
         throws RepositoryException
     {
         m_artifactIdentifier = identifier;
@@ -63,15 +61,10 @@ public class LazyResolvingSearchResult implements SearchResult
         }
     }
 
-    public Iterator<Artifact> iterator()
+    public InputStreamSource getContent()
+        throws RepositoryException
     {
-        try
-        {
-            lazyResolve();
-        } catch( RepositoryException e )
-        {
-            e.printStackTrace();
-        }
-        return m_result.iterator();
+        lazyResolve();
+        return m_result.getContent();
     }
 }

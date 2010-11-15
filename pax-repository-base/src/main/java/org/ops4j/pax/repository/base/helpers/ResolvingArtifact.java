@@ -19,7 +19,7 @@ import org.ops4j.base.io.InputStreamSource;
 import org.ops4j.pax.repository.Artifact;
 import org.ops4j.pax.repository.ArtifactQuery;
 import org.ops4j.pax.repository.RepositoryException;
-import org.ops4j.pax.repository.RepositoryResolver;
+import org.ops4j.pax.repository.Resolver;
 
 /**
  * Handy Artifact implementation (api helper)
@@ -29,10 +29,10 @@ public class ResolvingArtifact implements Artifact
 
     private Artifact m_artifact;
 
-    public ResolvingArtifact( RepositoryResolver resolver, ArtifactQuery identifier )
+    public ResolvingArtifact( Resolver resolver, ArtifactQuery identifier )
         throws RepositoryException
     {
-        m_artifact = resolver.find( identifier ).iterator().next();
+        m_artifact = resolver.find( identifier );
     }
 
     public InputStreamSource getContent()

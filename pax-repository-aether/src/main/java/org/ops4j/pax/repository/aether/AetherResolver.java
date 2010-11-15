@@ -36,9 +36,7 @@ import org.sonatype.aether.spi.connector.RepositoryConnectorFactory;
 import org.sonatype.aether.util.artifact.DefaultArtifact;
 import org.ops4j.pax.repository.ArtifactQuery;
 import org.ops4j.pax.repository.RepositoryException;
-import org.ops4j.pax.repository.RepositoryResolver;
-import org.ops4j.pax.repository.SearchResult;
-import org.ops4j.pax.repository.base.DefaultSearchResult;
+import org.ops4j.pax.repository.Resolver;
 import org.ops4j.pax.repository.base.helpers.LocalArtifact;
 import org.ops4j.pax.repository.maven.GavArtifactQuery;
 import org.ops4j.pax.repository.maven.GavArtifactQueryParser;
@@ -46,7 +44,7 @@ import org.ops4j.pax.repository.maven.GavArtifactQueryParser;
 /**
  *
  */
-public class AetherResolver implements RepositoryResolver
+public class AetherResolver implements Resolver
 {
 
     private static final Log LOG = LogFactory.getLog( AetherResolver.class );
@@ -69,10 +67,10 @@ public class AetherResolver implements RepositoryResolver
         m_repoSystem = newRepositorySystem();
     }
 
-    public SearchResult find( ArtifactQuery query )
+    public org.ops4j.pax.repository.Artifact find( ArtifactQuery query )
         throws RepositoryException
     {
-        return new DefaultSearchResult( new LocalArtifact( resolve( query ) ) );
+        return new LocalArtifact( resolve( query ) );
     }
 
     public AetherResolver()
