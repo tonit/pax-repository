@@ -17,9 +17,9 @@ package org.ops4j.pax.repository.base;
 
 import java.io.IOException;
 import java.io.InputStream;
-import org.ops4j.pax.repository.Artifact;
-import org.ops4j.pax.repository.ArtifactQuery;
+
 import org.ops4j.base.io.InputStreamSource;
+import org.ops4j.pax.repository.Artifact;
 import org.ops4j.store.Handle;
 import org.ops4j.store.Store;
 
