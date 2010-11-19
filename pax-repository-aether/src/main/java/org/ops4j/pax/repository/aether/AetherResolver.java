@@ -55,11 +55,10 @@ public class AetherResolver implements Resolver
 
     public AetherResolver( String local, String... repos )
     {
-        if( local == null )
+        if (local == null)
         {
             m_localRepo = System.getProperty( "user.home" ) + "/.m2/repository";
-        }
-        else
+        } else
         {
             m_localRepo = local;
         }
@@ -96,10 +95,10 @@ public class AetherResolver implements Resolver
 
             return artifact.getFile();
 
-        } catch( DependencyCollectionException e )
+        } catch (DependencyCollectionException e)
         {
             throw new RepositoryException( "Problem resolving " + identifier + " with Aether Binding", e );
-        } catch( ArtifactResolutionException e )
+        } catch (ArtifactResolutionException e)
         {
             throw new RepositoryException( "Problem resolving " + identifier + " with Aether Binding", e );
         }
@@ -108,14 +107,15 @@ public class AetherResolver implements Resolver
 
     private CollectRequest prepareResolveRequest( Dependency dependency )
     {
+        LOG.info( "Resolving " + dependency );
         CollectRequest collectRequest = new CollectRequest();
         collectRequest.setRoot( dependency );
 
         int i = 0;
-        for( String repos : m_repositories )
+        for (String repos : m_repositories)
         {
             RemoteRepository central = new RemoteRepository( "repos" + ( i++ ), "default", repos );
-            LOG.info( "+ " + repos );
+            LOG.debug( "+ " + repos );
             collectRequest.addRepository( central );
         }
         return collectRequest;
