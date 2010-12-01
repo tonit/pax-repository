@@ -25,7 +25,7 @@
         <repository>
             <id>local.release</id>
             <name>Nexus Local Release Repo</name>
-            <url>http://localhost:8081:/nexus/content/repositories/releases/</url>
+            <url>http://localhost:8081/nexus/content/repositories/releases/</url>
         </repository>
         <!--
         <repository>
