@@ -45,12 +45,10 @@
             <modules>
                 <module>pax-repository-api</module>
                 <module>pax-repository-base</module>
-
                 <module>pax-repository-maven-api</module>
+                <module>pax-repository-tarball</module>
                 <module>pax-repository-aether</module>
-
                 <module>pax-repository-url</module>
-
             </modules>
         </profile>
     </profiles>

@@ -1,0 +1,1 @@
+package org.ops4j.pax.repository.base;import org.ops4j.pax.repository.spi.ArtifactFilter;/** * */public class EmptyFilter<T> implements ArtifactFilter<T>{    final private boolean m_allow;    public EmptyFilter( boolean alwaysAllow )    {        m_allow = alwaysAllow;    }    public boolean allow( T identifier )    {        return m_allow;    }}

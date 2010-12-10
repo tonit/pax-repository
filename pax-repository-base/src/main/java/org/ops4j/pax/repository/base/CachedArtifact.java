@@ -31,7 +31,7 @@ public class CachedArtifact implements Artifact
 
     private final Store<InputStream> m_store;
     private final Handle m_handle;
-
+    
     public CachedArtifact( Store<InputStream> store, InputStream inp )
         throws IOException
     {

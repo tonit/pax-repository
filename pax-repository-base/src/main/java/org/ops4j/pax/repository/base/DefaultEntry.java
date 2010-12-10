@@ -29,4 +29,10 @@ public class DefaultEntry implements ArtifactEntry
     {
         m_entry = entry;
     }
+
+    @Override
+    public String toString()
+    {
+        return m_entry;
+    }
 }

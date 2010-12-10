@@ -34,4 +34,10 @@ public class DefaultQuery implements ArtifactQuery
     {
         return m_query;
     }
+
+    @Override
+    public String toString()
+    {
+        return "[DefaultQuery value=" + m_query + "]";
+    }
 }
