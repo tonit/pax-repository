@@ -1,6 +1,0 @@
-##################################
-# Pax Runner Profile             #
-# Knopflerfish Log Service 2.0.1 #
-##################################
-
-scan-bundle:http://www.knopflerfish.org/releases/2.1.1/osgi/jars/log/log_all-2.0.1.jar

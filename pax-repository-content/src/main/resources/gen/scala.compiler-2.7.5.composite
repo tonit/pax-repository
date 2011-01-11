@@ -1,7 +1,0 @@
-##########################
-# Pax Runner Profile for #
-# Scala Compiler 2.7.5   #
-##########################
-
-scan-bundle:mvn:http://scala-tools.org/repo-releases!org.scala-lang-osgi/scala-library/2.7.5
-scan-bundle:mvn:http://scala-tools.org/repo-releases!org.scala-lang-osgi/scala-compiler/2.7.5

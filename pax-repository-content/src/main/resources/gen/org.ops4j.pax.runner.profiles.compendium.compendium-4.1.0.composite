@@ -1,6 +1,0 @@
-#########################################
-# Pax Runner Profile for                #
-# OSGi Alliance Compendium Bundle 4.1.0 #
-#########################################
-
-scan-bundle:mvn:org.osgi/org.osgi.compendium/4.1.0

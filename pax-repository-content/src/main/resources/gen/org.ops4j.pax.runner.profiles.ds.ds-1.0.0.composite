@@ -1,2 +1,0 @@
-#Redirect for Apache Felix Desclarative Services
-scan-composite:mvn:org.ops4j.pax.runner.profiles/felix.ds//composite

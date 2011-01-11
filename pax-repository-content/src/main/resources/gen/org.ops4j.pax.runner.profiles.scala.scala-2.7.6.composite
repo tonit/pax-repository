@@ -1,9 +1,0 @@
-##########################
-# Pax Runner Profile for #
-# Scala 2.7.6            #
-##########################
-
-scan-bundle:mvn:http://scala-tools.org/repo-releases!org.scala-lang-osgi/scala-library/2.7.6
-scan-bundle:mvn:http://scala-tools.org/repo-releases!org.scala-lang-osgi/scala-compiler/2.7.6
-scan-bundle:mvn:http://scala-tools.org/repo-releases!org.scala-lang-osgi/scala-dbc/2.7.6
-scan-bundle:mvn:http://scala-tools.org/repo-releases!org.scala-lang-osgi/scala-swing/2.7.6

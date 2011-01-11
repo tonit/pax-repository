@@ -1,2 +1,0 @@
-#Redirect for Apache Felix Preferences Service
-scan-composite:mvn:org.ops4j.pax.runner.profiles/felix.prefs//composite

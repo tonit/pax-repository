@@ -1,7 +1,0 @@
-###################################
-# Pax Runner Profile              #
-# Concierge GUI Console 1.0.0.RC2 #
-###################################
-
-# Concierge GUI Console bundles
-scan-bundle:mvn:http://flowsgi.inf.ethz.ch/repository/maven2!ch.ethz.iks.concierge/concierge_gui/1.0.0.RC2

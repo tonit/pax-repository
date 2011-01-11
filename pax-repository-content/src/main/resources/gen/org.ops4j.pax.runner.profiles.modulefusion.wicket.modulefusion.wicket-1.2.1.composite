@@ -1,6 +1,0 @@
-##########################################
-# Pax Runner Profile for                 #
-# ModuleFusion Wicket Feature Pack 1.2.1 #
-##########################################
-
-scan-dir:http://modulefusion.googlecode.com/files/modulefusion-featurepack-wicket-1.2.1.zip!/**

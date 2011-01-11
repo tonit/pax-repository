@@ -1,5 +1,0 @@
-scan-composite:mvn:org.ops4j.pax.runner.profiles/coos-camel//composite
-
-scan-bundle:mvn:org.hsqldb/com.springsource.org.hsqldb/1.8.0.9
-scan-bundle:mvn:org.springframework/org.springframework.jdbc/2.5.6.SEC01
-scan-bundle:mvn:org.coosproject.modules/jdbcEdge-lib/0.3-SNAPSHOT
