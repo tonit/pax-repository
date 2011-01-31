@@ -1,0 +1,1 @@
+package org.ops4j.pax.repository.tarball;import org.ops4j.pax.repository.spi.Parser;/** * Created by IntelliJ IDEA. * User: tonit * Date: 1/31/11 * Time: 4:26 PM * To change this template use File | Settings | File Templates. */public class EmptyParser implements Parser<String, String>{    public String parse( String source )    {        return source;    }}
