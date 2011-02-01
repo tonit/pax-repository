@@ -1,0 +1,1 @@
+package org.ops4j.pax.repository.maven;import com.google.inject.AbstractModule;/** * Guice Module for Maven specific implementations. */public class MavenModule extends AbstractModule{    @Override    protected void configure()    {            }}
