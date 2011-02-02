@@ -1,0 +1,1 @@
+package org.ops4j.pax.repository;/** * Provider Type modeled after javax.inject.Provider. * Its because our repository api does not really have anything to do with javax.inject.Provider from a semantic perspective. * (look at the FullyQualifiedName, not just he Class Name). */public interface Provider<T> {    T get();}
