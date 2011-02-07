@@ -1,0 +1,1 @@
+package org.ops4j.pax.repository.tarball;import org.ops4j.pax.repository.Mapping;/** * Do nothing parser. Just returns the imput instance. */public class EmptyMapping<T> implements Mapping<T, T>{    public T parse( T source )    {        return source;    }}
