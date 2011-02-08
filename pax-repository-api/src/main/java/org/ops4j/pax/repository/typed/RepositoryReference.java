@@ -1,1 +1,0 @@
-package org.ops4j.pax.repository.typed;/** * Marker. Keys contributing in {@link TypedRepository} must create enums extending this interface. */public interface RepositoryReference {}

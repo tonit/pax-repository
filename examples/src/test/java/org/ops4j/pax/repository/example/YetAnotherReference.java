@@ -1,1 +1,1 @@
-package org.ops4j.pax.repository.example;import org.ops4j.pax.repository.typed.RepositoryReference;/** *  */public enum YetAnotherReference implements RepositoryReference {    ARTIFACT3,    ARTIFACT4}
+package org.ops4j.pax.repository.example;import org.ops4j.pax.repository.typed.TypedReference;/** *  */public enum YetAnotherReference implements TypedReference {    ARTIFACT3,    ARTIFACT4}
