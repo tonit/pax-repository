@@ -1,0 +1,1 @@
+package org.ops4j.repository.base.typed;/** *  */public class TypedWrapperRepositoryTest {}
