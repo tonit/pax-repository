@@ -1,0 +1,1 @@
+package org.ops4j.pax.repository.example;import org.ops4j.pax.repository.typed.RepositoryReference;/** * Other */public enum OtherReference implements RepositoryReference {    ARTIFACT1,    ARTIFACT2}
